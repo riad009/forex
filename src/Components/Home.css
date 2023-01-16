@@ -1,0 +1,66 @@
+.banner{
+
+  position: relative;
+  z-index: 1;
+  
+
+}
+.svg{
+
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  
+}
+.right{
+ background-color: #C7E8FB;
+ padding-bottom: 5%;
+}
+
+.divide{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+ 
+}
+
+/* //responsive */
+@media only screen and (max-width: 479px)
+   {
+ 
+   }
+
+   /* // grid */
+   @media only screen and (max-width: 1024px) {
+   
+  .divide{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2%;
+  }
+
+  .mobile{
+    
+    font-size:larger;
+    
+    
+   
+   
+  }
+ 
+ 
+   }
+
+   /*  */
+   
+   @media only screen and (max-width: 767px)
+   {
+   
+   }
+   /*  */
+   
+   @media only screen and (max-width: 479px)
+   {
+   
+   }
+
+

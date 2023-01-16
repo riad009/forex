@@ -1,0 +1,13 @@
+.partThreeDivide{
+
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.stackpos{
+
+    position: sticky;
+    top: 30px;
+    
+}
