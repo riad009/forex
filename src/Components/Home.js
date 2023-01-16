@@ -12,14 +12,35 @@ import { toast } from 'react-toastify';
 
 const Home = () => {
 
-  const [searchSchool,setSearchSchool]=useState([]);
-
-
-
-
+  const [searchSchool, setSearchSchool] = useState([]);
   const [schoolname, setSchoolName] = useState("")
 
+  const [seeMore, setseeMore] = useState(false)
+
+
+  let limitSchool;
+  if (schoolname.length > 3) {
+
+    limitSchool = schoolname?.slice(0, 3);
+  }
+
+  const handlSearch = (e) => {
+    console.log(e.target.value)
+
+    console.log('click')
+
+  }
+
+
+
+
+
+
+
+
   const handleFindSchool = () => {
+
+
 
     if (schoolname.length === 0) {
 
@@ -29,8 +50,8 @@ const Home = () => {
 
     }
 
-fetch(`http://localhost:5000/serachSchool/${schoolname}`)
-         .then(res => res.json())
+    fetch(`http://localhost:5000/serachSchool/${schoolname}`)
+      .then(res => res.json())
       .then(data => {
         setSearchSchool(data)
         // console.log('tow', data)
@@ -40,19 +61,19 @@ fetch(`http://localhost:5000/serachSchool/${schoolname}`)
 
   }
 
-  useEffect(()=>{
-    
-    fetch(`http://localhost:5000/serachSchool/${schoolname}`)
-    //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
-    .then(res => res.json())
-    .then(data => {
-      setSearchSchool(data)
-      // console.log('tow', data)
+  useEffect(() => {
+
+    fetch(`https://d-azure.vercel.app/serachSchool/${schoolname}`)
+      //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
+      .then(res => res.json())
+      .then(data => {
+        setSearchSchool(data)
+        // console.log('tow', data)
 
 
-    })
+      })
 
-  },[schoolname])
+  }, [schoolname])
   console.log(schoolname)
 
   return (
@@ -82,31 +103,73 @@ fetch(`http://localhost:5000/serachSchool/${schoolname}`)
                 <div>
 
 
+
                   <input onChange={(event) => setSchoolName(event.target.value)} type="text" placeholder="school name " className="input input-bordered w-full max-w-xs" />
+
+                  {
+                    schoolname.length ?   <div className="gap-y-2  select-secondary bg-gray-800 text-white mt-2 text-white h-48 overflow-y-scroll flex flex-col">
+                      {/* {
+                            limitSchool?.map((sc) =>
+                           <Link to={`/school/${sc._id}`} >  {sc.school} </Link>)
+   
+   
+   
+                       } */}
+
+                      {/* 
+                       {
+                      searchSchool.length > 5 &&   searchSchool.slice(0,5).map((sc) =>
+                           <Link to={`/school/${sc._id}`} >  {sc.school} </Link>)
+   
+   
+   
+                       } */}
+
+
+                      {
+                        searchSchool.map((sc) =>
+                          <Link className='btn-outline btn-info ' to={`/school/${sc._id}`} >  {sc.school} </Link>)
+
+
+
+                      }
+
+
+
+                    </div>
+                  :
+                  <></>
+
+                  }
+
+
+
 
                 </div>
 
 
-{/* map */}
-<select className="select select-secondary w-full max-w-xs">
+                {/* map */}
+                {/* <div  className="select select-secondary flex flex-col">
 {
 
 searchSchool.map(sc=>
 
   //
-  // 
+  //  
 
- <option><Link to={`/school/${sc._id}`}  > {sc.school} </Link> </option>
 
+ 
+ <Link to={`/school/${sc._id}`} >  {sc.school} </Link>
+     
    )
 }
-</select>
+</div> */}
 
 
 
                 {/*  */}
 
-                
+
 
                 {/*  */}
                 <div>
@@ -163,9 +226,9 @@ searchSchool.map(sc=>
               {/* search */}
 
               <div className='flex justify-center'>
-                {/* <Link ><button onClick={handleFindSchool} className="pc mt-5 btn btn-active bg-green-600 mt-12 ">Find school</button></Link> */}
 
-                <Link to='school'><button onClick={handleFindSchool} className="pc mt-5 btn btn-active bg-blue-600 mt-12 "> New Find school</button></Link>
+                <button onClick={handleFindSchool} className=" pc mt-5 btn btn-active bg-green-600 mt-12 ">  <Link to='school'>find school </Link></button>
+
 
 
                 <div className='justify-self-center w-40'><Lottie animationData={find} /></div>
