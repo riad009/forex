@@ -93,7 +93,7 @@ fetch(`http://localhost:5000/serachSchool/${schoolname}`)
 
 searchSchool.map(sc=>
 
-  
+  //
   // 
 
  <option><Link to={`/school/${sc._id}`}  > {sc.school} </Link> </option>
