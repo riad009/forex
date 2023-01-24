@@ -19,6 +19,11 @@ import { ToastContainer } from 'react-toastify';
 import Registration from './Components/Login/Registration';
 import Test from './Components/Membership/Test';
 import Compare from './Components/Compare/Compare';
+import FeaturesSchool from './Components/SearchSchool/FeaturesSchool';
+import ShowCompare from './Components/Compare/ShowCompare';
+import UpdateArticle from './Components/Admin/UpdateArticle';
+import UpdateSchool from './Components/Admin/UpdateSchool';
+
 
 
 function App() {
@@ -40,6 +45,10 @@ function App() {
             element: <School></School>,
           },
           {
+            path: '/FeaturesSchool',
+            element: <FeaturesSchool></FeaturesSchool>,
+          },
+          {
             path: '/login',
             element: <Login></Login>,
           },
@@ -56,6 +65,10 @@ function App() {
             element: <AdminArticle></AdminArticle>,
           },
           {
+            path: '/compare',
+            element: <Compare></Compare>,
+          },
+          {
             path: '/testok',
             element: <Test></Test>,
           },
@@ -67,6 +80,7 @@ function App() {
             path: '/adminmoderator',
             element: <ModeratorControl></ModeratorControl>,
           },
+          
           {
             path: '/darticle',
             element: <ExtraDeleteArticle></ExtraDeleteArticle>,
@@ -86,6 +100,18 @@ function App() {
             element:  <SchoolPage></SchoolPage>,
             loader:({params})=>fetch(`https://d-azure.vercel.app/school/${params.id}`)
           },
+          {
+            path: '/UpdateSchool/:id',
+            element:  <UpdateSchool></UpdateSchool>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/school/${params.id}`)
+          },
+          {
+            path: '/schoolCompareShow/:id',
+            element:  <ShowCompare></ShowCompare>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/school/${params.id}`)
+          },
+
+          
 
           {
             path: '/area/:id',
@@ -97,6 +123,17 @@ function App() {
             element:  <MoreArticle></MoreArticle>,
             loader:({params})=>fetch(`https://d-azure.vercel.app/recentarticled/${params.id}`)
           },
+          {
+            path: '/updatearticleid/:id',
+            element:  <UpdateArticle></UpdateArticle>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/recentarticled/${params.id}`)
+          },
+        
+          // {
+          //   path: '/recievecomment/:id',
+          //   element:   <ShowComment></ShowComment>,
+          //   loader:({params})=>fetch(`https://d-azure.vercel.app/recievecomment/${params.id}`)
+          // },
         
          
         

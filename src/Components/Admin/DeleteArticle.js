@@ -7,7 +7,7 @@ const Deleted = ({d}) => {
   const handleDelete=()=>{
   
        
-       var answer = window.confirm("Delete data?");
+       var answer = window.confirm("Delete Article?");
    
        if (answer) {
          
@@ -22,10 +22,8 @@ const Deleted = ({d}) => {
     
     
     
-    setTimeout(()=>{
-    window.location.reload(false);   
-    },3000)
-    toast.error(`Article ${d.title} deleted!`, {
+    
+    toast.error(`Article ${d.title} deleted! check in home page`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -44,8 +42,67 @@ const Deleted = ({d}) => {
     
     }
 
-   
+    const handleEdit =(event)=>{
+
+      event.preventDefault()
+      const article =event.target.article.value
+      const title =event.target.title.value
+      
+  console.log("edit call",article)
+
+      
+      // const task =event.target.task.value
     
+     
+
+        const submit={  
+       
+
+        //new     
+       
+       
+        details: article,
+        title: title
+      
+          
+            
+        }
+    
+      
+      fetch(`https://d-azure.vercel.app/updatArticle/${d._id}`,{
+        
+        method: 'PUT',
+        
+        headers:{
+         "content-type" : "application/json"
+        },
+        
+        
+        body: JSON.stringify(submit)
+     
+         })
+         .then(res=>res.json())
+      .then(data=>{
+            toast.success('Article update Complete')
+      console.log(data)
+    
+
+       
+    
+      })
+        console.log(submit)
+      
+        
+    //submit
+    
+        
+         
+        }
+
+
+    const date = d?.date?.slice(0,10);
+    const time = d?.date?.slice(11,19);
+   
     return (
         <div>
           <div className="card w-85 bg-base-100 shadow-xl ">
@@ -67,6 +124,12 @@ const Deleted = ({d}) => {
       {d.title}
       <button onClick={handleDelete}  className="btn btn-outline btn-warning">Delete Article </button>
    
+      <Link className='' to={`/updatearticleid/${d._id}`} > <button className='btn btn-outline btn-success'>Edit Article</button>  </Link>
+
+        
+       
+  
+   
     </h2>
     <p className='text-justify'>{d.details.slice(0,350)} 
     
@@ -76,11 +139,13 @@ const Deleted = ({d}) => {
     </p>
     <div className="card-actions justify-end">
                  
-      <div className="badge badge-outline">Author : Forex </div> 
-      <div className="badge badge-outline">Date : 08 january</div>
+    <div className="badge badge-outline">Author : {d.name} </div> 
+      <div className="badge badge-outline">Date : {date}</div>
+      <div className="badge badge-outline">Time : {time}</div>
     </div>
   </div>
 </div>
+
 <ToastContainer/>
         </div>
     );

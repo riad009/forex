@@ -20,7 +20,7 @@ const SchoolPage = (props) => {
     
     return (
         <div className='mb-12 '>
-            <button>Sunday</button>
+            
            <div className='pt-12 colorBlue '>
   
            </div>

@@ -24,7 +24,8 @@ const ShowArticle = ({article}) => {
     
   //   }
 
-   
+  const date = article?.date?.slice(0,10);
+  const time = article?.date?.slice(11,19);
     
     return (
         <div>
@@ -56,8 +57,10 @@ const ShowArticle = ({article}) => {
     <div className="card-actions justify-end">
     {/* <button onClick={handleDelete}  className="btn btn-outline btn-warning">Delete Task {article.title}</button>
                  */}
-      <div className="badge badge-outline">Author : Forex </div> 
-      <div className="badge badge-outline">Date : 08 january</div>
+      <div className="badge badge-outline">Author : {article.name} </div> 
+      <div className="badge badge-outline">Date : {date}</div>
+
+
     </div>
   </div>
 </div>

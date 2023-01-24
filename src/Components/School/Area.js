@@ -101,26 +101,7 @@ useEffect(()=>{
  <div>
     <div>
      <h3 className="font-bold">{timeLeft} School selected for compare</h3>
-        {
-
-        limit ==10 ?
-        <>
-        
-        <div className='flex'>
-        <div className='justify-self-center w-12'><Lottie animationData={find}/>  </div>
-        <div className="text-xs flex"> <p> vip member have unlimited </p></div>
-
-        </div>
-        </>
-        :
-        <>
-        <div className='flex'>
-        <div className="text-xs flex mt-2">You have <p className='text-red-400 ml-1 mr-1'>  {limit}  </p> school left to compare</div>
-       <a href="https://support.google.com/googleplay/answer/4646404?hl=en&co=GENIE.Platform%3DAndroid"> <div className='justify-self-center w-40  ml-2 mt-1  hover:underline '><Lottie animationData={buy2}/> </div>
-  </a>
-       </div>    
-  </>
-     }
+    
    </div>
  </div>
  <div className="justify-center">
@@ -174,7 +155,7 @@ useEffect(()=>{
 
     } */}
 
-<div className='view compare' id='view compare'>
+<div className='view compare grid lg:grid-cols-1  sm:grid-cols-1' id='view compare'>
    
 {
 

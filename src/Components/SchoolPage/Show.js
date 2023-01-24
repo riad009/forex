@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdLocationOn } from "react-icons/md";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { MdLocationCity } from "react-icons/md";
@@ -10,93 +10,127 @@ import { AiOutlineLink } from 'react-icons/ai';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { ImLocation2 } from 'react-icons/im';
 
-
+import { FaSearchengin } from 'react-icons/fa';
 import Lottie from "lottie-react"
+import { Link } from 'react-router-dom';
 
 const Show = (props) => {
+  const [searchSchool, setSearchSchool] = useState([]);
+  const [schoolname, setSchoolName] = useState("")
+  
+
+  useEffect(() => {
+
+    fetch(`https://d-azure.vercel.app/serachSchool/${schoolname}`)
+    //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
+    .then(res => res.json())
+    .then(data => {
+    setSearchSchool(data)
+    // console.log('tow', data)
+    
+    
+    })
+    
+    }, [schoolname])
+
+
   const {d}=props
 
  
 
-  // const handdleCompare=()=>{
+  
 
-  //   console.log('clickkkkkkkkk')
-  // }
+//extra code for rating recieve
 
-  // const handleAdd = (event) => {
-  //   event.preventDefault()
+   
+const [showcomment,setshowcomment]=useState([]);
+ 
+    
+useEffect(()=>{
+  fetch(`https://d-azure.vercel.app/getcomment?combine=${d?.combine}`)
+  
+  .then(res=>res.json())
+  .then(data=>setshowcomment(data))
 
-  //   console.log("submit done")
-  //   const category = event.target.category.value
-  //   const city = event.target.city.value
-  //   const school = event.target.school.value
-  //   const students = event.target.students.value
-  //   const location = event.target.location.value
-  //   const grades = event.target.grades.value
-  //   const img = event.target.img.value
+        
+  
+      },
+      
+      [])
+      
 
+      const sum = showcomment.map(item => parseFloat(item.rating)).reduce((acc, val) => acc + val, 0);
+      const averagebeta = sum / showcomment.length;
+      console.log('avg',averagebeta); 
+     
+     let average = averagebeta.toFixed(1);
+      console.log('length',showcomment.length); 
+      console.log('sum',sum); 
+      const reviews =showcomment.length;
+      const ratings = Math.round(average);
+      console.log('ratings',ratings)
 
-
-
-
-
-  //   const submit = {
-
-
-  //     //new     
-  //     category: category,
-
-  //     city: city,
-  //     school: school,
-  //     students: students,
-  //     location: location,
-  //     grades: grades,
-  //     img: img,
-
-
+  
+// extra code or rating
 
 
-  //   }
+  //update
+  const handleEdit =(event)=>{
+
+    event.preventDefault()
+    const school =event.target.school.value
+    const students =event.target.students.value
+    
 
 
-  //   fetch('https://d-azure.vercel.app/addSchool', {
+    
+    // const task =event.target.task.value
+  
+   
 
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json"
-  //     },
+      const submit={  
+     
 
-  //     body: JSON.stringify(submit)
+      //new     
+     
+     
+      school: school,
+      students: students
+    
+        
+          
+      }
+  
+    
+    fetch(`https://d-azure.vercel.app/updatSchool/${d._id}`,{
+      
+      method: 'PUT',
+      
+      headers:{
+       "content-type" : "application/json"
+      },
+      
+      
+      body: JSON.stringify(submit)
+   
+       })
+       .then(res=>res.json())
+    .then(data=>{
+          toast.success('School updating... Refresh page to see latest')
+    console.log(data)
+  
 
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       if (data.acknowledged) {
+     
+  
+    })
+      console.log(submit)
+    
+      
+  //submit
+  
+     
 
-  //         // event.target.reset()
-
-  //       }
-  //       toast.success(`New review Added !`, {
-  //         position: "top-right",
-  //         autoClose: 4000,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "light",
-  //       });
-
-  //     })
-  //   console.log(submit)
-
-
-  //   //submit
-
-
-
-  // }
+  }
 
   return (
     <div className='' >
@@ -135,16 +169,81 @@ const Show = (props) => {
   <div className="alert colorRating flex text-left justify-evenly ">
   <div>
      <div className='flex '>
-      <h3 className="text-left ">Rating</h3>
+      <button className='text-left '>{reviews} reviews</button>
       <div className="rating rating-xs ml-2 mt-2">
-  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" checked />
-  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
-  
+       {/* rating  */}
+   {
+         ratings =='1' ?
+         <>
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         </>
+         :
+         <></>
+
+   }
+     
+   {
+         ratings =='2' ?
+         <>
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+ 
+         </>
+         :
+         <></>
+
+   }
+   {
+         ratings =='3' ?
+         <>
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+ 
+         </>
+         :
+         <></>
+
+   }
+   {
+         ratings =='4' ?
+         <>
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+ 
+         </>
+         :
+         <></>
+
+   }
+   {
+         ratings =='5' ?
+         <>
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+         <input type="radio" name="rating-5" disabled className="mask mask-star-2 bg-orange-400" />
+ 
+         </>
+         :
+         <></>
+
+   }
+     
+     {/* rating  */}
 </div>
-<button className='ml-2 btn btn-sm'>see</button>
+{
+
+  average ?
+  <><button className='ml-2 bg-dark px-2 rounded'>{average}</button></>
+  :
+  <>FcRating</>
+
+}
+
     </div>
     
   </div>
@@ -153,7 +252,7 @@ const Show = (props) => {
 
  {/* rating end */}
     <div className='m-6 '>
-   
+    
     <li className='mt-5 flex'><ImLocation2 className='mt-1 mr-2'/> {d.location}</li>
     {/* modal */}
     <li className='mt-5 '> 
@@ -172,11 +271,45 @@ const Show = (props) => {
     </li>
    
     <li className='mt-5'><a className='flex hover:underline hover:text-blue-400' href="https://www.youtube.com/watch?v=lHgtB7DuOD8&ab_channel=Yuvrajstudio%28Ufetal%29"><AiOutlineLink className='mr-2 mt-1 text-blue-400 rounded'/>  Website </a></li>
-    
+    <li className='mt-2'>
+     {/* modal update */}
+
+
+ <section className='text-red-400'>
+        
+
+        {/* The button to open modal */}
+        <label htmlFor="my-modal-10" className="btn btn-outline btn-sm btn-success">Update School</label>
+        
+        {/* Put this part before </body> tag */}
+        <input type="checkbox" id="my-modal-10" className="modal-toggle" />
+        <div className="modal modal-content-scroll flex overflow-y-scroll">
+          <form onSubmit={handleEdit} className="modal-box relative">
+            <label htmlFor="my-modal-10" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
+            <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+            <input      type="text" name='students' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
+           <br /> <br />
+          
+            <textarea   onChange className="textarea textarea-accent w-full" name='school' placeholder="Article detail" ></textarea>
+           
+           <br /> <br /> <button className="btn  btn-success">Update Article </button>
+           
+          </form>
+          
+        </div>
+        
+        
+               
+    </section>  
+      
+      
+     </li>
     </div>
-    
-    
+  
+   
   </ul>
+
   </div>
 {/* <figure className='h-48'><img src="https://placeimg.com/200/280/arch" alt="Movie"/></figure> */}
 <div className="card lg:w-96 sm:w-12 ">
@@ -206,7 +339,15 @@ const Show = (props) => {
 <h2 className='mr-12'>{d.school} School</h2>
 <h2 className='mr-12'>{d.students} Students</h2>
 <h2 className='mr-12'>Grades {d.grades}</h2>
+
+
+{/* <h2 className='mr-12'>schoolType {d.schoolType}</h2>
+<h2 className='mr-12'>salaryrange {d.salaryrange}</h2> */}
+
+
+
 </div>
+ 
 
       <Silver d={d} ></Silver>
 

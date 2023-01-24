@@ -10,11 +10,13 @@ import Show from '../SchoolPage/Show';
 const AreaDetails = ({d,i,handleCompare,limit,setlimit}) => {
  
   
+  const navigate=useNavigate()
 
   const handleCompareError=()=>{
 
 
-    alert("buy vip membership to get unlimited commpare")
+    alert("Pleae login for compare")
+    navigate('/login')
   }
   
 console.log(handleCompare)
@@ -22,7 +24,7 @@ console.log(handleCompare)
 
   
   const currentPathname = window.location.pathname;
-  const navigate=useNavigate()
+  
   const {user,loading}=useContext(AuthContext)
   const [admin,setAdmin]=useState([])
 
@@ -97,9 +99,9 @@ console.log(handleCompare)
         <td>{d.location}</td>
         <td className='m-2'>{d.grades}</td>
         <td>{d.students}</td>
-       {
+       {/* {
 
-        limit >= 1?
+        user?.email ?
       <> <td><button onClick={()=>handleCompare(d)} className='btn ' > compare</button></td>
       </>
 
@@ -107,7 +109,7 @@ console.log(handleCompare)
 
       <><button onClick={handleCompareError} className='btn btn-error'> Compare </button>
       </>
-       }
+       } */}
 
         {
 
@@ -118,11 +120,7 @@ admin.map(s=>  <h1>
 
 s.accountType=="admin" || s.accountType=="moderator" || s.accountType=="silver" ||  s.accountType=="golden" ?
 <> 
-{
-  setlimit(10)
 
- 
-}
 
 {
  

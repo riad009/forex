@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Article from '../article/Article';
 import './Silver.css'
@@ -10,13 +10,113 @@ import { GiSelfLove } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import School from '../School/School';
-const Silver = ({d}) => {
 
+import SilHome from './SilHome';
+import Comment from './Comment';
+import ShowComment from './ShowComment';
+import { AuthContext } from '../Auth/AuthProvider';
+import Golden from './Golden';
+import { RiH1 } from 'react-icons/ri';
+const Silver = ({d}) => {
+  console.log('gggggggggggggggggggggg',d)
   const navigate=useNavigate()
   
-  
-   
-    const handdleCompare=()=>{
+  const [searchSchool, setSearchSchool] = useState([]);
+  const [schoolname, setSchoolName] = useState("")
+  const {user}=useContext(AuthContext)
+
+  useEffect(() => {
+
+    fetch(`https://d-azure.vercel.app/serachSchool/${schoolname}`)
+    //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
+    .then(res => res.json())
+    .then(data => {
+    setSearchSchool(data)
+    // console.log('tow', data)
+    
+    
+    })
+    
+    }, [schoolname])
+
+   const handdleCompareError=(event)=>{
+
+    alert('please login for compare')
+    navigate('/login')
+    
+   }
+    const handdleCompare=(event)=>{
+
+///conmpare dbms
+event.preventDefault()
+    
+
+        
+    
+
+          const submit={  
+         
+
+          //new     
+          school: d.school ,
+          students : d.students,
+          grades : d.grades,
+          //new graes
+          Sportsgd: d.Sportsgd,
+          CollegePrepgd: d.CollegePrepgd,
+          Diversitygd: d.Diversitygd,
+          ClubsActivitiesgd: d.ClubsActivitiesgd,
+          Teachersgd: d.Teachersgd,
+            Academicsgd: d.Academicsgd,
+            reading: d.reading,
+            ratio: d.ratio,
+            math: d.math,
+          
+          
+        
+            
+              
+          }
+      
+        
+        fetch('https://d-azure.vercel.app/saveCompare',{
+          
+          method: "POST",
+          headers:{
+           "content-type" : "application/json"
+          },
+          
+          body: JSON.stringify(submit)
+       
+           })
+           .then(res=>res.json())
+        .then(data=>{
+       
+        if(data.acknowledged){
+            
+        event.target.reset()
+       
+         }
+         toast.success(`compare Added !`, {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+      
+        })
+      
+        
+          
+      //submit
+///conmpare dbms
+
+
+      //change page
         setTimeout(()=>{
             toast.info(`choice a school for compare`, {
                 position: "top-right",
@@ -30,8 +130,8 @@ const Silver = ({d}) => {
                 }); 
             },1500)
      
-        navigate('/school')
-
+        navigate('/schoolCompareShow/63c9b12c95043a57d83a0501')
+  // dont delete this id ( it will redirect to the data)
     }
   
 
@@ -59,7 +159,21 @@ title : 'last'
  
 
        ]
+//user golden
 
+const [admin,setAdmin]=useState([])
+
+
+//admin
+useEffect(()=>{
+
+  fetch(`https://d-azure.vercel.app/accountType?email=${user?.email}`)
+  .then(res=>res.json())
+  .then(data=> setAdmin(data))
+
+},[user?.email])
+
+//user golden
     
     return (
         <div className='partThreeDivide pt-12 colorDarkBlue' >
@@ -70,8 +184,28 @@ title : 'last'
      
     
   <ul className='  rounded'>
+  
+
+
+
+
+  {
+
+
+user?.email ?  
+<>
+<button onClick={handdleCompare} className="btn  btn-info  text-white "><GiSelfLove className='text-2xl mr-2'/> Compare </button>
+</>
+:
+<>
+<button onClick={handdleCompareError} className="btn  btn-error  text-white "><GiSelfLove className='text-2xl mr-2'/> Compare </button>
+
+</> 
+}
+
  
-  <button onClick={handdleCompare} className="btn  btn-info  text-white "><GiSelfLove className='text-2xl mr-2'/> Compare </button>
+   
+   
     {menuItem.map( menu=>(
 
 <li> 
@@ -98,9 +232,25 @@ title : 'last'
   {/* middle content start */}
    <div >
      
-   <div className='home' id='home'>
+   <div className='home ' id='home'>
+   {
+    admin.map(s=> <h1>
+
+  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+
+  <><Golden d={d}></Golden> </>
+  :
+  <> </>
+
+
+
+  }
+
+
+    </h1> )
+   }
+    <SilHome  d={d}></SilHome>
    
-  <Article></Article>
   </div>
    <div className='compare' id='compare'>
    
@@ -109,12 +259,12 @@ title : 'last'
 
    <div className='middle' id='middle'>
    
-   <Article></Article>
+  <Comment  d={d}></Comment>
   </div>
 
    <div className='last' id='last' >
    
-   <Article></Article>
+  <ShowComment  d={d}></ShowComment>
   </div>
 
     

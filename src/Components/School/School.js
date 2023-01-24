@@ -6,6 +6,7 @@ import CardDetail from './CardDetail';
 import TownSchool from './TownSchool';
 import './School.css'
 import Ads from '../Ads/Ads';
+import FeaturesSchool from '../SearchSchool/FeaturesSchool';
 
 const School = ({d}) => {
 
@@ -41,7 +42,11 @@ const School = ({d}) => {
         
         
     return (
-      <section className='part'>
+      <div >
+  {/* <FeaturesSchool></FeaturesSchool> */}
+ 
+<section className='part'>
+  
 {/* {
   d &&
   <> ss {d.school}
@@ -107,6 +112,8 @@ const School = ({d}) => {
   <Ads></Ads>
         </div>
       </section>
+
+      </div>
     );
 };
 

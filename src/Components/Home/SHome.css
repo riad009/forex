@@ -1,0 +1,30 @@
+.container{
+    /* height: 100vh;
+    width: 100%; */
+    background-image: url(../../assets/img/background.png);
+    background-position: center;
+    background-size: cover;
+    
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  
+
+  .btnColor{
+
+    display: inline-block;
+    background: linear-gradient(45deg,#87adfe,#ff77cd);
+  }
+
+/* 
+ .arrow-icons{
+ margin-top: 40px;
+ display: flex;
+ margin-left: 15% ;
+ }
+  .arrow-icons img{
+
+  width: 40px;
+  margin-right: 25px ;
+  } */

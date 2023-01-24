@@ -5,11 +5,21 @@ import { CgProfile } from 'react-icons/cg';
 import { FaSearchengin } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { RiFindReplaceLine } from 'react-icons/ri';
+import { GoVerified } from 'react-icons/go';
 import Area from './School/Area';
 
 
 const Header = ({children}) => {
+
   const navigate=useNavigate()
+  const handleAddYourSchool=()=>{
+
+
+    alert('please login with your principle \naccount to add your school')
+    navigate('/login')
+
+  }
+  
   
   const {logout}=useContext(AuthContext)
   const {user,loading}=useContext(AuthContext)
@@ -58,9 +68,10 @@ else {
     return (
         <div className='shadow-2xl '>
 
-
-
            <div className="navbar bg-blue-800 shadow-2xl">
+
+
+
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -77,15 +88,14 @@ user?.email ?
 <Link to={'/'}> <li>  <button><a className='btn btn-outline btn-info'>Home</a></button> </li></Link>
 <Link to={'/school'}> <li>  <button><a className='btn btn-outline btn-info'>Find School</a></button> </li></Link>
 
-     
-     
-     
+       
 
 <li> <button onClick={handleLogout} className='btn btn-outline btn-info'>logout </button></li></>
 :
 <>
 <Link to={'/'}> <li>  <button><a className='btn btn-outline btn-info'><AiOutlineHome/>  Home</a></button> </li></Link>
 <Link to={'/school'}> <li>  <button><a className='btn btn-outline btn-info'>Find School</a></button> </li></Link>
+<li>  <button> <a onClick={handleAddYourSchool} className='btn btn-outline btn-info'>Add Your School</a> </button> </li>
 <Link to={'/login'}> <li>  <button><a className='btn btn-outline btn-info'> Login </a></button> </li></Link>
     
 
@@ -107,6 +117,8 @@ user?.email ?
       </ul>
     </div>
     <a className="text-white btn btn-ghost normal-case text-xl"><FaSearchengin/> BSpk </a>
+  
+
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -133,14 +145,15 @@ user?.email ?
      
 
 <li> <button onClick={handleLogout} className='btn btn-outline btn-info'>logout </button></li>
-
+ 
 </>
 
 :
 <>
 <Link to={'/'}> <li><a className='text-white'><AiOutlineHome/> Home</a></li></Link>
-     <Link to={'/school'}> <li><a className='text-white'><RiFindReplaceLine/>  Find School</a></li></Link>
-     <Link to={'/login'}> <li><a className='text-white'>Login</a></li></Link>
+<Link to={'/school'}> <li><a className='text-white'><RiFindReplaceLine/>  Find School</a></li></Link>
+ <li onClick={handleAddYourSchool}><a className='text-white'>Add Your School</a></li>
+ <Link to={'/login'}> <li><a className='text-white'>Login</a></li></Link>
     
 
 
@@ -166,11 +179,18 @@ user?.email ?
 
 admin.map(s=>  <h1>
 
-   
+{
+
+s.accountType=='golden' ?
+<p className='text-blue-400 p-4' > <GoVerified/> </p>
+:
+<></>
+
+}
 
       {
 
-s.accountType=="admin" || s.accountType=="moderator" ?
+s.accountType=="admin" || s.accountType=="moderator" ||  s.accountType=="principle" ?
 <> 
 
 
@@ -186,7 +206,7 @@ s.accountType=="admin" || s.accountType=="moderator" ?
 </div>
   </p>
 
-
+{/* admim role */}
 {
 
 s.accountType=="admin"?
@@ -196,9 +216,35 @@ s.accountType=="admin"?
 </>
 :
 <>
-<label htmlFor="my-modal-3" className="btn btn-outline btn-info">Moderator</label>
 </>
-    }
+}
+{/* moderator role */}
+{
+
+s.accountType=="moderator"?
+<> 
+<label htmlFor="my-modal-3" className="btn btn-outline btn-info">Moderator</label>  
+
+</>
+:
+<>
+</>
+}
+{/* princple role */}
+{
+
+s.accountType=="principle"?
+<> 
+<label htmlFor="my-modal-3" className="btn btn-outline btn-info">principle</label>  
+
+</>
+:
+<>
+</>
+}
+
+
+
     
 </div>
 
@@ -237,9 +283,34 @@ Admin
 </>
 :
 <>
-Moderator
 </>
     }
+{
+
+s.accountType=="moderator"?
+<> 
+moderator
+
+</>
+:
+<>
+
+</>
+    }
+{
+
+s.accountType=="principle"?
+<> 
+principle
+
+</>
+:
+<>
+
+</>
+    }
+
+
 
       </h1>)
     }
@@ -259,13 +330,10 @@ admin.map(s=>  <h1>
      <hr />
      <hr />
     <div className='mt-4'>
-   {/* admin */}
+   
    
 
- 
-   <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
-   <a className='btn btn-outline btn-error btn-sm m-2'> <Link to={'/darticle'}> Delete Article</Link></a>
-   <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
+   {/* // admin role */}
 
    {
 
@@ -276,6 +344,60 @@ admin.map(s=> <h1>
 s.accountType=="admin"?
 <> 
 <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}> User control</Link></a>
+<a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
+    <a className='btn btn-outline btn-success btn-sm m-2'> <Link to={'/darticle'}> Edit / Delete Article</Link></a>
+    <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
+    <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}> User control</Link></a>
+
+
+</>
+:
+<>
+
+</>
+}
+
+</h1>)
+}
+   {/* // moderator role */}
+
+   {
+
+admin.map(s=> <h1>
+
+{
+
+s.accountType=="moderator"?
+<> 
+<a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}> User control</Link></a>
+<a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
+    <a className='btn btn-outline btn-success btn-sm m-2'> <Link to={'/darticle'}> Edit / Delete Article</Link></a>
+    <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
+
+
+
+</>
+:
+<>
+
+</>
+}
+
+</h1>)
+}
+   {/* // principle role */}
+
+   {
+
+admin.map(s=> <h1>
+
+{
+
+s.accountType=="principle"?
+<> 
+
+    <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
+
 
 
 </>
@@ -289,7 +411,7 @@ s.accountType=="admin"?
 }
 
   
-   {/* admin */}
+ 
     
      
     </div>

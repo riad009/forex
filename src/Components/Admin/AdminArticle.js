@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import article from '../../assets/article-1.json'
 import Lottie from "lottie-react"
 import { toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
+import { AuthContext } from '../Auth/AuthProvider';
 
 
 
 const AdminArticle = () => {
 
+  const [admin,setAdmin]=useState([])
+
+  const {user,loading}=useContext(AuthContext)
+
+  //user
+useEffect(()=>{
+
+  fetch(`https://d-azure.vercel.app/accountType?email=${user?.email}`)
+  .then(res=>res.json())
+  .then(data=> setAdmin(data))
+
+},[user?.email])
+const name = admin.map(item => item.name);
+
+//
+
+const date = new Date();
+//
 
     const handleAdd=(event)=>{
         event.preventDefault()
@@ -17,7 +36,7 @@ const AdminArticle = () => {
         const title = event.target.title.value
         const details = event.target.details.value
         const img = event.target.img.value
-       
+             
       
 
           const submit={  
@@ -27,7 +46,8 @@ const AdminArticle = () => {
           title: title ,
           details: details,
           img: img,
-          
+          name : name,
+          date:date
         
             
               

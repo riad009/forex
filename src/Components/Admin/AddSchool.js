@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../Auth/AuthProvider';
 
 import './AddSchool.css'
 
 const AddSchool = () => {
+  const {user,loading}=useContext(AuthContext)
 
     const handleAdd=(event)=>{
         event.preventDefault()
@@ -70,7 +72,23 @@ const AddSchool = () => {
           }
     const handleAddSchool=(event)=>{
         event.preventDefault()
-    
+    //randome
+
+    var text = "";
+    var possible = "ABC3DEF31GHIJKLMNOPQRS4TUVWXYZabcdefghijklmXnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < 35; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+      console.log('text',text);
+          const combine = text
+      
+          
+          
+          
+          console.log('combine',combine)
+
+    //randome
 
         const category = event.target.category.value
         const city = event.target.city.value
@@ -79,7 +97,19 @@ const AddSchool = () => {
         const location = event.target.location.value
         const grades = event.target.grades.value
         const img = event.target.img.value
-      
+        const schoolType = event.target.schoolType.value
+        const salaryrange = event.target.salaryrange.value
+        const youtube = event.target.youtube.value
+      //  grades
+      const Academicsgd = event.target.Academicsgd.value
+      const Teachersgd = event.target.Teachersgd.value
+      const ClubsActivitiesgd = event.target.ClubsActivitiesgd.value
+      const Diversitygd = event.target.Diversitygd.value
+      const CollegePrepgd = event.target.CollegePrepgd.value
+      const Sportsgd = event.target.Sportsgd.value
+      const math = event.target.math.value
+      const reading = event.target.reading.value
+      const ratio = event.target.ratio.value
           
        
       
@@ -88,15 +118,32 @@ const AddSchool = () => {
           const submit={  
          
 
-          //new     
+          //new  
+          combine: combine,   
           category: category ,
           
           city: city,
           school: school,
           students: students,
           location: location,
-          grades: grades,
           img: img,
+          schoolType: schoolType,
+          salaryrange: salaryrange,
+          youtube: youtube,
+          combine:combine,
+          grades: grades,
+          Sportsgd:Sportsgd,
+          CollegePrepgd:CollegePrepgd,
+          Diversitygd:Diversitygd,
+          ClubsActivitiesgd:ClubsActivitiesgd,
+          Teachersgd:Teachersgd,
+            Academicsgd:Academicsgd,
+            reading:reading,
+            ratio:ratio,
+            math:math,
+          
+          
+          
           
         
             
@@ -198,6 +245,9 @@ const AddSchool = () => {
     <button className="btn btn-primary">Add this Town</button>
    
      </div>
+
+   
+
 </form>
 
 </div>
@@ -252,12 +302,7 @@ const AddSchool = () => {
   {/* // */}
 
   {/* // */}
-  <div className="form-control">
-    <label className="label">
-      <span className="label-text">Total students</span>
-    </label>
-    <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
-
+ 
   {/* // */}
   {/* // */}
   <div className="form-control">
@@ -267,22 +312,185 @@ const AddSchool = () => {
     <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='location'/> </div>
 
   {/* // */}
-  {/* // */}
   <div className="form-control">
     <label className="label">
-      <span className="label-text">Grades</span>
+      <span className="label-text">Total Students</span>
     </label>
-    <input type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='grades'/> </div>
+    <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
 
   {/* // */}
+
+  {/* // features school */}
+
+  <select required name='schoolType' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >school features</option>
+  
+ <option value='Robotics'>  Robotics </option>
+ <option value='Nazra'>  Nazra </option>
+ <option value='Sports'>  Sports </option>
+ <option value='Science Lab'>  Science Lab </option>
+ <option value='Computer Literacy'>  Computer Literacy </option>
+ <option value='Library'>  Library</option>
+ <option value='Swimming pool'>  Swimming pool</option>
+ <option value='Co education'>  Co education</option>
+ <option value='Agha Khan Board '>   Agha Khan Board </option>
+ <option value='Only Girls'>   Only Girls </option>
+  
+</select>
+  {/* // salary range */}
+
+  <select required name='salaryrange' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >school fees</option>
+  
+ <option value='0 to 1000'> 0 to 1000 </option>
+ <option value='1001 to 2500'>  1001 to 2500 </option>
+ <option value='2500 to 5000'>  2500 to 5000 </option>
+ <option value='5001 to 10000'>  5001 to 10000 </option>
+ <option value='100001 to 30000'>  100001 to 30000</option>
+ 
+ 
+  
+</select>
   
   <div className="form-control">
     <label className="label">
       <span className="label-text mt-4">School Picture <span className='opacity-50'>optional </span></span>
     </label>
-    <textarea className="textarea input-sm textarea-success" placeholder="Give picture link for Town thumbnail" name='img'></textarea> 
+    <textarea className="textarea input-sm textarea-success" placeholder="Give picture link for school" name='img'></textarea> 
   </div>
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text mt-4">Youtube video <span className='opacity-50'>optional </span></span>
+    </label>
+    <textarea className="textarea input-sm textarea-success" placeholder="Exmple : https://youtu.be/8UVNT4wvIGY" name='youtube'></textarea> 
+  </div>
+  <h1 className='bg-gray-400 rounded text-white'>Grading</h1>
+  {/* // overall  niche grade start */}
+
+{/*  */}
+<select required name='grades' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Overall Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
  
+ 
+  
+</select>
+
+{/*  */}
+  <select required name='Academicsgd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Teachers Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+
+{/*  */}
+  <select required name='Teachersgd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Teacher Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+{/*  */}
+  <select required name='ClubsActivitiesgd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Clubs & Activities Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+{/*  */}
+  <select required name='Diversitygd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Diversity Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+{/*  */}
+  <select required name='CollegePrepgd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >College Prep Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+{/*  */}
+  <select required name='Sportsgd' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >Sports Grade</option>
+  
+ <option value='A+'> A+ </option>
+ <option value='A'>  A </option>
+ <option value='B'>  B</option>
+ <option value='C'>  C </option>
+ <option value='D'>  D</option>
+ 
+ 
+  
+</select>
+
+  {/* // overall  niche grade */}
+
+
+{/* student result */}
+<h1 className='bg-gray-400 rounded text-white'>	Students results on different areas </h1>
+
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Math test scores</span>
+    </label>
+    <input type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='math'/> </div>
+{/*  */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Reading / language art scores</span>
+    </label>
+    <input type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='reading'/> </div>
+{/*  */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Student : Teacher ration</span>
+    </label>
+    <input type="text" placeholder="Example: 13:1 " className="input input-bordered input-info w-full max-w-xs" name='ratio'/> </div>
+{/*  */}
+
+
+
+
+
+{/* student result */}
   <div className="form-control mt-6">
     <button className="btn btn-primary">Add this school</button>
    

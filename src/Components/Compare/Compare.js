@@ -1,25 +1,110 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 
-const Compare = ({c}) => {
+
+const Compare = () => {
+
+  // const detail = useLoaderData()
+  const [searchSchool, setSearchSchool] = useState([]);
+  const [schoolname, setSchoolName] = useState("")
+  
+
+  useEffect(() => {
+
+    fetch(`https://d-azure.vercel.app/serachSchool/${schoolname}`)
+    //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
+    .then(res => res.json())
+    .then(data => {
+    setSearchSchool(data)
+    // console.log('tow', data)
+    
+    
+    })
+    
+    }, [schoolname])
+
+
+  const [categories,setCategories]=useState([]);  //saved compare
+   
+
+  useEffect(()=>{
+      fetch('https://d-azure.vercel.app/saveCompareGet')
+      .then(res=>res.json())
+      .then(data=>setCategories(data))
+      
+      
+          },
+          [])
+
     return (
-        <div>
-            
+      <div className=''>
+  
 
-            <div className="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-  <div className="card-body">
-    <h2 className="card-title">
-      Shoes!
-      <div className="badge badge-secondary">dd {c.school}</div>
-    </h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions justify-end">
-      <div className="badge badge-outline">Fashion</div> 
-      <div className="badge badge-outline">Products</div>
-    </div>
-  </div>
+ 
+
+
+  {
+
+//prrvius compare save data
+categories.map(d=> <div className="">
+<div className="h-52 m-2  bg-[#19496F] text-white rounded-box ">
+
+ <h2 className='text-left text-xl text-font shadow-xl p-2'>your saved compare</h2>
+
+     <table>
+<div style={{
+      border: '2px solid gray',
+      padding: '2px',
+      margin: '10px',
+      width: '100%',
+     
+  }}>
+    
+<tr >
+  <th className='text-xl text-red-600 p-4'>School</th>
+
+  <td className='mr-1'>{d.school},</td>
+ 
+  <td className=''>{d.students} students</td>
+</tr>
 </div>
-        </div>
+
+<div style={{
+      border: '2px solid gray',
+      padding: '5px',
+      margin: '10px',
+      width: '100%',
+     
+  }}>
+    
+<tr >
+  <th className='text-xl text-red-600 p-4'>Gradings</th>
+
+  <td className=' font-bold'>{d.grades}</td>
+  <td className='ml-4'>salary:{d.salaryrange}</td>
+  
+ 
+</tr>
+</div>
+
+
+
+  </table>  
+
+
+
+
+
+  </div>    
+</div> )
+  }
+
+
+ 
+
+
+
+  </div>
     );
 };
 
