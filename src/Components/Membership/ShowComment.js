@@ -20,6 +20,7 @@ const ShowComment = ({d}) => {
     const [showcomment,setshowcomment]=useState([]);
  
     
+
     useEffect(()=>{
       fetch(`https://d-azure.vercel.app/getcomment?combine=${d?.combine}`)
       

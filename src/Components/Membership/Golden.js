@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { GoVerified } from 'react-icons/go';
 
 const Golden = ({d}) => {
    console.log('golden',d)
@@ -60,9 +61,9 @@ Data Sources</p>      </div>
    
             </section>
             {/* table for scores */}
-            <section className=' rounded shadow-2xl bg-[#FFFFFF] w-60  lg:w-96 '>
+            <section className=' rounded shadow-2xl bg-[#FFFFFF]  '>
   
- <div className='my-3 flex justify-between'>
+ <div className='my-3 flex justify-evenly'>
  <h1 className='  ' >Math test scores</h1>
  
  <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem",  }}>{d.math}%</div>
@@ -70,15 +71,15 @@ Data Sources</p>      </div>
  
 <hr />
  
- <div className='my-3 flex justify-between'>
- <h1 className='  ' >Math test scores</h1>
+ <div className='my-3 flex justify-evenly'>
+ <h1 className='  ' >Reading language</h1>
  <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem", }}>{d.reading}%</div>
 
   </div>
  
 <hr />
  
- <div className='my-3 flex justify-between'>
+ <div className='my-3 flex justify-evenly'>
  <h1 className=' ' >Student : Teacher ratio</h1>
    <h1>  {d.ratio} </h1>
  </div>
@@ -86,11 +87,118 @@ Data Sources</p>      </div>
 <hr />
  
 
+           </section>
+{/* table for scores */}
+
+{/* verify sign */}
+<section className='grid lg:grid-cols-2 sm:grid-cols-1 bg-[#FFFFFF] py-5 my-4 '>
+
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'> Year established : {d.yearestablished} <p className='text-blue-400 ml-2 '>
+    {
+       d.selectedestablished ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+    
+    </p> </h1>
+
+</div>
+
+{/*  */}
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'> Total teachers : {d.totalteachers} <p className='text-blue-400 ml-2  '>
+    
+{
+       d.selectedtotalteachers ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+    </p> </h1>
+</div>
+{/*  */}
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'>  Religious Afiliation : {d.ReligiousAfiliation} <p className='text-blue-400 ml-2  '>
+    
+{
+       d.selectedrelegios ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+    
+    </p> </h1>
+
+</div>
+{/*  */}
+{/*  */}
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'>  Extra curricular : {d.Extracurricular} <p className='text-blue-400 ml-2  '>
+    
+{
+       d.selectedcurricular ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+   
+   </p> </h1>
+
+</div>
+{/*  */}
+{/*  */}
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'>  Youtube video  <p className='text-blue-400 ml-2  '>
+    
+{
+       d.selectedYoutube ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+   
+   </p> </h1>
+
+</div>
+{/*  */}
+
+{/*  */}
+<div className='mb-2'>
+<hr /> <hr /> 
+<h1 className='flex'>  School Type : {d.schoolType} <p className='text-blue-400 ml-2  '>
+    
+{
+       d.selectedschoolType ==='verify' ?
+       <>
+       <GoVerified/>
+       </>
+       :
+       <></>
+    }
+   
+   </p> </h1>
+
+</div>
+<hr /> <hr />
+{/*  */}
 </section>
-
-
-
-            {/* table for scores */}
         </div>
     );
 };

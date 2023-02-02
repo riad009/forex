@@ -9,7 +9,8 @@ import Show from '../SchoolPage/Show';
 
 const AreaDetails = ({d,i,handleCompare,limit,setlimit}) => {
  
-  
+ 
+
   const navigate=useNavigate()
 
   const handleCompareError=()=>{
@@ -37,7 +38,10 @@ console.log(handleCompare)
 },[user?.email])
   const handleDelete=()=>{
     
-    
+    var answer = window.confirm("Delete this school?");
+   if(answer){
+
+
     fetch(`https://d-azure.vercel.app/deletearea/${d._id}`,{
     
     
@@ -46,13 +50,7 @@ console.log(handleCompare)
     })
     .then(res=>res.json)
     .then(er=>console.error(er))
-    
-   
-    
-    setTimeout(()=>{
-      navigate(`/school`)   
-    },3000)
-       
+  
    
 
     toast.error(`school ${d.school} deleted`, {
@@ -66,6 +64,7 @@ console.log(handleCompare)
         theme: "colored",
         });
         
+   }
     
     }
     

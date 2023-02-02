@@ -23,6 +23,7 @@ import FeaturesSchool from './Components/SearchSchool/FeaturesSchool';
 import ShowCompare from './Components/Compare/ShowCompare';
 import UpdateArticle from './Components/Admin/UpdateArticle';
 import UpdateSchool from './Components/Admin/UpdateSchool';
+import PrivateRoute from './Components/PrivateRoutes/PrivateRoute';
 
 
 
@@ -69,6 +70,10 @@ function App() {
             element: <Compare></Compare>,
           },
           {
+            path: '*',
+            element: <Home></Home> ,
+          },
+          {
             path: '/testok',
             element: <Test></Test>,
           },
@@ -97,13 +102,13 @@ function App() {
           },
           {
             path: '/school/:id',
-            element:  <SchoolPage></SchoolPage>,
+            element:   <SchoolPage></SchoolPage>, 
             loader:({params})=>fetch(`https://d-azure.vercel.app/school/${params.id}`)
           },
           {
             path: '/UpdateSchool/:id',
             element:  <UpdateSchool></UpdateSchool>,
-            loader:({params})=>fetch(`https://d-azure.vercel.app/school/${params.id}`)
+            loader:({params})=>fetch(`https://d-azure.vercel.app/schoolupdateid/${params.id}`)
           },
           {
             path: '/schoolCompareShow/:id',

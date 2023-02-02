@@ -8,6 +8,7 @@ import { Bar } from 'react-chartjs-2';
 import { Tooltip } from 'chart.js';
 const ShowCompare = () => {
 
+
 const [state ,setstate] =useState({
 
     
@@ -70,113 +71,11 @@ const [state ,setstate] =useState({
 {
 
 //prrvius compare save data
-categories.map(d=> <div className="">
-  
-   {/* <div className="h-60 m-2  bg-[#19496F] text-white rounded-box "> */}
-
- <h2 className='text-left text-xl text-font shadow-xl p-2'>your saved school for compare</h2>
-<table>
-<div style={{
-      border: '2px solid gray',
-      padding: '2px',
-      margin: '10px',
-      width: '100%',
-     
-  }}>
-    
-    <tr className=' bg-gray-200 p-4 flex justify-between' >
-  <p className=' text-red-400 font-bold text-xl'>{d.school}</p>
-
-  <p className=''>{d.students} Students </p>
-  <p className=''>💵{d.salaryrange}</p>
-  <p className=''> ★{d.schoolType}</p>
+categories.map(p=> <div className="">
   
 
-</tr>
-</div>
-{/* //table1 */}
-<div style={{
-      border: '1px solid gray',
-      padding: '5px',
-      margin: '10px',
-      width: '100%',
-     
-  }}>
-    
-<tr >
-<section className='text-left pl-4 rounded   grid lg:grid-cols-2 py-12 mb-6 grid-cols-1 '>
-             <div className='text-center mb-4'>
-             <div className="avatar placeholder">
-  <div className="bg-[#409126] text-white rounded-full w-16">
-    <span className="text-xl font-bold">{d.grades} </span>
-    
-  </div>
-</div>
-<h1>Overall School Grade</h1> <p className='text-sm'>How are grades calculated?
-Data Sources</p>      </div>
-             {/*  */}
-             <div className='justify-evenly gap-2 grid grid-cols-2'>
-            
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Academicsgd}</span>
-  </div>
-</div> Academics  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Teachersgd }</span>
-  </div>
-</div> Teachers  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.ClubsActivitiesgd}</span>
-  </div>
-</div> Clubs & Activities  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Diversitygd}</span>
-  </div>
-</div> Diversity  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.CollegePrepgd}</span>
-  </div>
-</div> College Prep </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Sportsgd}</span>
-  </div>
-</div> Sports  </h1>
-{/*  */}
-           
-             </div>
-   
-    </section>
-</tr>
-</div>
-{/* //table1 */}
-
-
-</table>
-
-
-
-
-
-  {/* </div>  */}
   
-
-     
-     
-</div> )
-  }
-            
-          {
+ {
 
 //new compare 
 detail.map(d=>  <h1>
@@ -226,116 +125,103 @@ detail.map(d=>  <h1>
   
    </div>
 </div>
-{/*  */}
+
 
 </h2>
 
-<table>
-<div style={{
-      border: '2px solid gray',
-      padding: '2px',
-      margin: '10px',
-      width: '100%',
-     
-  }}>
-    
-    <tr className=' bg-gray-200 p-4 flex justify-between' >
-  <p className=' text-red-400 font-bold text-xl'>{d.school}</p>
+{/*  */}
 
-  <p className=''>{d.students} Students </p>
-  <p className=''>💵{d.salaryrange}</p>
-  <p className=''> ★{d.schoolType}</p>
-  
-
-</tr>
-</div>
-{/* //table1 */}
-<div style={{
-      border: '1px solid gray',
-      padding: '5px',
-      margin: '10px',
-      width: '100%',
-     
-  }}>
-    
-<tr >
-<section className=' text-left pl-4 rounded  bg-gray-200 grid lg:grid-cols-2 py-12 mb-6 grid-cols-1 '>
-             <div className='text-center mb-4'>
-             <div className="avatar placeholder">
-  <div className="bg-[#409126] text-white rounded-full w-16">
-    <span className="text-xl font-bold">{d.grades} </span>
-    
-  </div>
-</div>
-<h1>Overall School Grade</h1> <p className='text-sm'>How are grades calculated?
-Data Sources</p>      </div>
-             {/*  */}
-             <div className='justify-evenly gap-2 grid grid-cols-2'>
-            
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Academicsgd}</span>
-  </div>
-</div> Academics  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Teachersgd }</span>
-  </div>
-</div> Teachers  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.ClubsActivitiesgd}</span>
-  </div>
-</div> Clubs & Activities  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Diversitygd}</span>
-  </div>
-</div> Diversity  </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.CollegePrepgd}</span>
-  </div>
-</div> College Prep </h1>
-{/*  */}
-            <h1><div className="avatar placeholder">
-  <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
-    <span className="text-xs font-bold ">{d.Sportsgd}</span>
-  </div>
-</div> Sports  </h1>
-{/*  */}
-           
-             </div>
+<div className="overflow-x-auto">
+  <table className="table w-full">
    
-    </section>
-</tr>
+    <thead>
+      <tr>
+        <th>school</th>
+        <th>{d.school}</th>
+        <th>{p.school}</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr >
+        <th>Students</th>
+        <td>{d.students}</td>
+        <td>{p.students}</td>
+      </tr>
+      <tr className="active">
+        <th>Total teacher</th>
+        <td>{d.totalteachers}</td>
+        <td>{p.totalteachers}</td>
+      
+      </tr>
+     
+      <tr >
+        <th>Grades</th>
+        <td>{d.grades}</td>
+        <td>{p.grades}</td>
+      
+      </tr>
+     
+      
+      <tr className="active">
+        <th>Salary range</th>
+        <td>{d.salaryrange}</td>
+        <td>{p.salaryrange} </td>
+      </tr>
+      <tr>
+        <th>School features</th>
+        <td>{d.schoolType }</td>
+        <td>{p.schoolType} </td>
+      </tr>
+      
+      <tr className="active">
+        <th>Reading language language</th>
+        <td> <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem", }}>{d.reading}%</div>
+ </td>
+        <td> <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem", }}>{p.reading}%</div>
+ </td>
+      </tr>
+      <tr>
+        
+        <th>Math test scores</th>
+        <td> <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem", }}>{d.math}%</div>
+ </td>
+        <td> <div className="text-sm  radial-progress text-success"style={{ "--value": "70", "--size": "3rem", }}>{p.math}%</div>
+ </td>
+      </tr>
+     
+      <tr className="active">
+
+        <th>Student:faculty ratio</th>
+        <td> {d.ratio}</td>
+        <td> {p.ratio}</td>
+      </tr>
+     
+      <tr >
+        <th>Ratings</th>
+        <td>{d.rating}</td>
+        <td>{p.rating}</td>
+      
+      </tr>
+    </tbody>
+  </table>
 </div>
-{/* //table1 */}
-
-
-</table>
+{/*  */}
 
 
 
  </div> 
- {/* grades */}
+
 
 </h1>)
-}
-{/* //chart */}
-{/* <section>
-<Chart
-              options={searchSchool.students}
-              series={searchSchool.school}
-              type="bar"
-              width="500"
-            />
 
-</section> */}
+}
+
+     
+</div> )
+  }
+
+
  
 
         </div>

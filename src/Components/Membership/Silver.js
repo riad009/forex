@@ -17,6 +17,9 @@ import ShowComment from './ShowComment';
 import { AuthContext } from '../Auth/AuthProvider';
 import Golden from './Golden';
 import { RiH1 } from 'react-icons/ri';
+import Grades from './Golden/Grades';
+import Result from './Golden/Result';
+import Verify from './Golden/Verify';
 const Silver = ({d}) => {
   console.log('gggggggggggggggggggggg',d)
   const navigate=useNavigate()
@@ -71,7 +74,18 @@ event.preventDefault()
             reading: d.reading,
             ratio: d.ratio,
             math: d.math,
-          
+            yearestablished: d.yearestablished,
+           totalteachers: d.totalteachers,
+           ReligiousAfiliation: d.ReligiousAfiliation,
+           Extracurricular: d.Extracurricular,
+
+           Academicsgd: d.Academicsgd,
+          reading: d.reading,
+          ratio: d.ratio,
+          math: d.math,
+          salaryrange: d.salaryrange,
+          schoolType:  d.schoolType,
+          ratio: d. ratio
           
         
             
@@ -130,32 +144,50 @@ event.preventDefault()
                 }); 
             },1500)
      
-        navigate('/schoolCompareShow/63c9b12c95043a57d83a0501')
+        navigate('/schoolCompareShow/63d45f22dde0e7b2f7538c78')
   // dont delete this id ( it will redirect to the data)
     }
   
 
        const menuItem =[
+        {
 
-        
+    id: 3,
+    title : 'youtube'
+          
+     },
+
   {
 
-id: 1,
-title : 'home'
+id: 4,
+title : 'grades'
 
   },
   {
 
-id: 2,
-title : 'middle'
+id: 5,
+title : 'result'
 
   },
   {
 
-id: 1,
-title : 'last'
+id: 6,
+title : 'verify'
 
   },
+  {
+
+ id: 7,
+  title : 'comment'
+    
+ },
+  {
+
+ id: 8,
+  title : 'reviews'
+    
+ },
+ 
  
 
        ]
@@ -230,46 +262,105 @@ user?.email ?
    </div>
 
   {/* middle content start */}
+
+  {/*  */}
    <div >
-     
-   <div className='home ' id='home'>
-   {
+    {/*  ///////////////////////////////////////////// */}
+  {/* home */}
+
+
+  <div className='youtube' id='3'>
+   
+  <SilHome d={d} ></SilHome>
+  </div>
+  {/* home */}
+   {/* grades */}
+    {
     admin.map(s=> <h1>
 
   {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
 
-  <><Golden d={d}></Golden> </>
+  <>
+   <div className='grades' id='4' >
+      <Grades d={d}></Grades>
+     
+   </div>
+  
+   </>
   :
   <> </>
 
-
-
   }
-
-
     </h1> )
    }
-    <SilHome  d={d}></SilHome>
+     
+   {/* grades */}
+
    
-  </div>
+  {/* result */}
+
+  {
+    admin.map(s=> <h1>
+
+  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+
+  <>
+   <div className='result' id='5' >
+      <Result d={d} ></Result>
+     
+   </div>
+  
+   </>
+  :
+  <> </>
+
+  }
+    </h1> )
+   }
+  {/* result */}
+
+
+
+  {/* verify */}
+  {
+    admin.map(s=> <h1>
+
+  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+
+  <>
+   <div className='verify' id='6' >
+      <Verify d ={d} ></Verify>
+     
+   </div>
+  
+   </>
+  :
+  <> </>
+
+  }
+    </h1> )
+   }
+  {/* verify */}
+
    <div className='compare' id='compare'>
    
  
   </div>
 
-   <div className='middle' id='middle'>
+   <div className='comment' id='7'>
    
   <Comment  d={d}></Comment>
   </div>
-
-   <div className='last' id='last' >
+{/* 
+   <div className='reviews' id='8' >
    
   <ShowComment  d={d}></ShowComment>
   </div>
+  */}
 
     
    </div>
-   {/* middle content end */}
+   {/* middle content \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ end */}
   
 
   

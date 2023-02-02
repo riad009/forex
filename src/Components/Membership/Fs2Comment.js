@@ -3,16 +3,17 @@ import { AuthContext } from '../Auth/AuthProvider';
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { MdOutlineDateRange } from 'react-icons/md';
-const FshowComment = ({numbers}) => {
+const Fs2howComment = ({numbers}) => {
+ 
  
 
   const [storedNumbers, setStoredNumbers] = useState([]);
 const [sum, setSum] = useState(0);
 
- 
+ console.log('mmmmmmmmmmmmm',numbers.date)
   const {user,loading}=useContext(AuthContext)
-    const date = numbers?.date?.slice(0,10);
-    const time = numbers?.date?.slice(11,19);
+    // const ddd = numbers.date.slice(0,10);
+   
 // 
  
 
@@ -32,7 +33,7 @@ console.log('rating',numbers.rating)
     <CgProfile/>
     Parent 
     
-      <div className=" text-sm">{user?.email}</div>
+      <div className=" text-sm text-slate-500">{numbers.date}</div>
   {/* rating  start*/}
   
     </h2>
@@ -65,7 +66,7 @@ console.log('rating',numbers.rating)
       
 }
 </div> 
-      <div className="badge badge-outline"><AiOutlineFieldTime/> {time}</div>
+      <div className="badge badge-outline text-slate-500"><AiOutlineFieldTime/>{numbers.time}</div>
     </div>
   </div>
   
@@ -81,4 +82,4 @@ console.log('rating',numbers.rating)
     );
 };
 
-export default FshowComment;
+export default Fs2howComment;

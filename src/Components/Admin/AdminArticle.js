@@ -25,6 +25,23 @@ useEffect(()=>{
 const name = admin.map(item => item.name);
 
 //
+ //randome give the  value
+
+ var text = "";
+ var possible = "ABC3DEF31GHIJKLMNOPQRS4TUVWXYZabcdefghijklmXnopqrstuvwxyz0123456789";
+
+ for (var i = 0; i < 35; i++)
+   text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+   console.log('text',text);
+       const combine = text
+   
+       
+       
+       
+    
+
+ //randome
 
 const date = new Date();
 //
@@ -47,7 +64,8 @@ const date = new Date();
           details: details,
           img: img,
           name : name,
-          date:date
+          date:date,
+          combine:combine
         
             
               

@@ -1,13 +1,182 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const UpdateSchool = () => {
+  const detail = useLoaderData()
+
+  //rank
+  const handlerank =(event)=>{
+
+    event.preventDefault()
+  
+
+      const submit={  
+     
+
+        rank: "yes"
+          
+       
+      }
+  
+    
+    fetch(`https://d-azure.vercel.app/schoolrank/${detail._id}`,{
+      
+      method: 'PUT',
+      
+      headers:{
+       "content-type" : "application/json"
+      },
+      
+      
+      body: JSON.stringify(submit)
+   
+       })
+       .then(res=>res.json())
+    .then(data=>{
+          toast.success('school ranked')
+    console.log(data)
+  
+
+     
+  
+    })
+      console.log(submit)
+    
+      
+  //submit
+  
+     
+
+  }
+ 
+
+  //rank
+  
+  //ref
+  const dschool = useRef(null);
+  const category = useRef(null);
+  const city  = useRef(null);
+  const students  = useRef(null);
+  const location  = useRef(null);
+  const schoolType  = useRef(null);
+  const salaryrange  = useRef(null);
+  const yearestablished  = useRef(null);
+  const  totalteachers  = useRef(null);
+  const  ReligiousAfiliation  = useRef(null);
+  const  contact  = useRef(null);
+  const  reading  = useRef(null);
+  const  math  = useRef(null);
+  const   youtube  = useRef(null);
+  
+
+  useEffect(() => {
+    dschool.current.value = detail.school
+    category.current.value = detail.category
+    city.current.value = detail.city
+    students.current.value = detail.students
+    location.current.value = detail.location
+    schoolType.current.value = detail.schoolType
+    salaryrange.current.value = detail.salaryrange
+    yearestablished.current.value = detail.yearestablished
+    totalteachers.current.value = detail.totalteachers
+    ReligiousAfiliation.current.value = detail.ReligiousAfiliation
+    contact.current.value = detail.contact
+    reading.current.value = detail.reading
+    math.current.value = detail.math
+    youtube.current.value = detail.youtube
 
 
-    const detail = useLoaderData()
+    
+  
+  }, [])
+
+  //ref
+
+// total student verify
+
+const [selectedTotalStudents,setselectedTotalStudents] = useState('verify');
+
+const handleTotalStudents = (event) => {
+  setselectedTotalStudents(event.target.dataset.color);
+  console.log('total student',selectedTotalStudents)
+}
+
+
+
+// youtube verify//
+
+const [selectedYoutube,setselectedYoutube] = useState('verify');
+
+const handleYoutube = (event) => {
+  setselectedYoutube(event.target.dataset.youtube);
+}
+console.log('youtube',selectedYoutube)
+
+
+//
+// school type verify
+
+const [selectedschoolType,setselectedschoolType] = useState('verify');
+
+const handleschoolType = (event) => {
+setselectedschoolType(event.target.dataset.feature);
+}
+console.log('youtube',selectedschoolType)
+//
+
+//
+//
+// total teacher verify
+
+const [selectedtotalteachers,setselectedtotalteachers] = useState('verify');
+
+const handletotalteachers = (event) => {
+setselectedtotalteachers(event.target.dataset.totalteachers);
+}
+console.log('selectedtotalteachers',selectedtotalteachers)
+//
+// school type verify
+
+const [selectedestablished,setselectedestablished] = useState('verify');
+
+const handleestablished = (event) => {
+setselectedestablished(event.target.dataset.established);
+}
+console.log('setselectedestablished',selectedestablished)
+//
+
+
+// school type verify
+
+const [selectedrelegios,setselectedrelegios] = useState('verify');
+
+const handlerelegios = (event) => {
+setselectedrelegios(event.target.dataset.relegios);
+}
+console.log('selectedrelegios',selectedrelegios)
+//
+
+
+// curricular verify
+
+const [selectedcurricular,setselectedcurricular] = useState('verify');
+
+const handlecurricular = (event) => {
+setselectedcurricular(event.target.dataset.curricular);
+}
+console.log('curricuar',selectedcurricular)
+//
+
+
+
+
+//////////////////
+   
+  
+ 
   //update
-  console.log('detail',detail)
+  
   const handleEdit =(event)=>{
 
     event.preventDefault()
@@ -20,7 +189,7 @@ const UpdateSchool = () => {
     const img = event.target.img.value
     const schoolType = event.target.schoolType.value
     const salaryrange = event.target.salaryrange.value
-    const youtube = event.target.youtube.value
+    const youtube = event.target.youtubevideo.value
   //  grades
   const Academicsgd = event.target.Academicsgd.value
   const Teachersgd = event.target.Teachersgd.value
@@ -31,9 +200,18 @@ const UpdateSchool = () => {
   const math = event.target.math.value
   const reading = event.target.reading.value
   const ratio = event.target.ratio.value 
-
+      // verify new add
+      const yearestablished = event.target.yearestablished.value
+      const totalteachers = event.target.totalteacher.value
+      const ReligiousAfiliation = event.target.ReligiousAfiliation.value
+      const Extracurricular = event.target.Extracurricular.value
     
-
+    
+//new
+const website = event.target.website.value
+const contact = event.target.contact.value
+const gmail = event.target.gmail.value
+const map = event.target.map.value
 
     
     // const task =event.target.task.value
@@ -64,6 +242,28 @@ const UpdateSchool = () => {
           reading:reading,
           ratio:ratio,
           math:math,
+           // verify new add
+           yearestablished:yearestablished,
+           totalteachers:totalteachers,
+           ReligiousAfiliation:ReligiousAfiliation,
+           Extracurricular:Extracurricular,
+         
+           //verify
+           selectedTotalStudents: selectedTotalStudents,
+           selectedYoutube:selectedYoutube,
+           selectedschoolType:selectedschoolType,
+           selectedestablished:selectedestablished,
+           selectedtotalteachers:selectedtotalteachers,
+           selectedcurricular:selectedcurricular,
+           selectedrelegios:selectedrelegios,
+
+           website:website,
+           contact : contact,
+           gmail: gmail,
+           map : map,
+
+           
+           
         
     
        
@@ -85,7 +285,7 @@ const UpdateSchool = () => {
        })
        .then(res=>res.json())
     .then(data=>{
-          toast.success('School updating... Refresh page to see latest update')
+          toast.success('School updating... dont go back before processing is done')
     console.log(data)
   
 
@@ -102,9 +302,27 @@ const UpdateSchool = () => {
   }
     return (
         <div>
-            <h2>Udate School</h2>
-            <button id="modal-button">Open Modal</button>
-            <form onSubmit={handleEdit} className="card-body">
+          <div>
+    <h2 onClick={handlerank} className='btn btn-success mt-2'>Give rank </h2>
+           
+
+          </div>
+    <div className=" min-h-screen bg-base-200 ">
+<div className="hero-content flex-col ">
+<div className="text-center">
+   {/* <h1 className="text-3xl font-bold mt-6 text-red-400 ">Add New School</h1>
+  */}
+
+  <div className="alert shadow-lg text-2xl font-bold text-info">
+  <div>
+     <span>Update School of {detail.school}</span>
+  </div>
+</div>
+{/* <div className='justify-self-center w-96'><Lottie animationData={article}/></div> */}
+</div>
+
+<div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+<form onSubmit={handleEdit} className="card-body">
 <div className="form-control">
     </div>
   {/* // */}
@@ -112,7 +330,7 @@ const UpdateSchool = () => {
     <label className="label">
       <span className="label-text">Town name </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='category'/> </div>
+    <input ref={category} type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='category'/> </div>
 
   {/* // */}
 
@@ -121,41 +339,116 @@ const UpdateSchool = () => {
     <label className="label">
       <span className="label-text">City  name </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='city'/> </div>
+    <input ref={city} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='city'/> </div>
 
   {/* // */}
 
   {/* // */}
   <div className="form-control">
     <label className="label">
-      <span className="label-text">School  name </span>
+      <span className="label-text">School name </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='school'/> </div>
+    <input ref={dschool} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='school'/>
+   </div>
+   {/*  */}
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text">Year established</span>
+      <section>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedestablished}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="established" value="verify" data-established="verify" checked={selectedestablished === 'verify'} onChange={handleestablished} />
+<input className='radio radio-error' type="radio" color="not verify" name="established" value="not verify" data-established="not verify" checked={selectedestablished === 'not verify'} onChange={handleestablished} />
+    </div>
+</section>
+    </label>
+    <input ref={yearestablished} type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='yearestablished'/>
+   </div>
 
   {/* // */}
+  
+   {/*  */}
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text">Total Teachers</span>
+      <section>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedtotalteachers}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="totalteachers" value="verify" data-totalteachers="verify" checked={selectedtotalteachers === 'verify'} onChange={handletotalteachers} />
+<input className='radio radio-error' type="radio" color="not verify" name="totalteachers" value="not verify" data-totalteachers="not verify" checked={selectedtotalteachers === 'not verify'} onChange={handletotalteachers} />
+    </div>
+</section>
+    </label>
+    <input ref={totalteachers} type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='totalteacher'/>
+   </div>
 
   {/* // */}
- 
+    
+     <div className="form-control">
+    <label className="label">
+      <span className="label-text">Religious Afiliation</span>
+      <section>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedrelegios}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="relegios" value="verify" data-relegios="verify" checked={selectedrelegios === 'verify'} onChange={handlerelegios} />
+<input className='radio radio-error' type="radio" color="not verify" name="relegios" value="not verify" data-relegios="not verify" checked={selectedrelegios === 'not verify'} onChange={handlerelegios} />
+    </div>
+</section>
+    </label>
+    <input ref={ReligiousAfiliation} type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='ReligiousAfiliation'/>
+   </div>
+  {/* // */}
+   {/* // */}
+    
+   <div className="form-control">
+    <label className="label">
+      <span className="label-text">Extra curricular</span>
+      <section>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedcurricular}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="curricular" value="verify" data-curricular="verify" checked={selectedcurricular === 'verify'} onChange={handlecurricular} />
+<input className='radio radio-error' type="radio" color="not verify" name="curricular" value="not verify" data-curricular="not verify" checked={selectedcurricular === 'not verify'} onChange={handlecurricular} />
+    </div>
+</section>
+    </label>
+    <input type="text" placeholder="Type here"  className="input input-bordered input-info w-full max-w-xs" name='Extracurricular'/>
+   </div>
   {/* // */}
   {/* // */}
   <div className="form-control">
     <label className="label">
       <span className="label-text">Location details</span>
     </label>
-    <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='location'/> </div>
+    <input ref={location} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='location'/> </div>
 
   {/* // */}
   <div className="form-control">
     <label className="label">
-      <span className="label-text">Total Students</span>
-    </label>
-    <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
+      
+      <span className="label-text">Total Students  </span>
+      
+      <section>
+
+      <div className='flex'>
+        <h2 className='text-xs mr-2 text-stone-500'>{selectedTotalStudents}</h2>
+      <input className='radio mr-4  radio-success' type="radio" color="verify" name="color" value="verify" data-color="verify" checked={selectedTotalStudents === 'verify'} onChange={handleTotalStudents} />
+      <input className='radio radio-error' type="radio" color="not verify" name="color" value="not verify" data-color="not verify" checked={selectedTotalStudents === 'not verify'} onChange={handleTotalStudents} />
+          </div>
+      </section>
+      
+       </label>
+    
+    <input ref={students} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
 
   {/* // */}
 
   {/* // features school */}
-
-  <select required name='schoolType' className=" select-info  select w-full max-w-xs">
+  
+  <select ref={schoolType} required name='schoolType' className=" select-info  select w-full max-w-xs">
   <option  disabled selected >school features</option>
   
  <option value='Robotics'>  Robotics </option>
@@ -170,9 +463,20 @@ const UpdateSchool = () => {
  <option value='Only Girls'>   Only Girls </option>
   
 </select>
+
+<section className='mt-4'>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedschoolType}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="feature" value="verify" data-feature="verify" checked={selectedschoolType === 'verify'} onChange={handleschoolType} />
+<input className='radio radio-error' type="radio" color="not verify" name="feature" value="not verify" data-feature="not verify" checked={selectedschoolType === 'not verify'} onChange={handleschoolType} />
+    </div>
+</section>
+
+
   {/* // salary range */}
 
-  <select required name='salaryrange' className=" select-info  select w-full max-w-xs">
+  <select ref={salaryrange} required name='salaryrange' className=" select-info  select w-full max-w-xs">
   <option  disabled selected >school fees</option>
   
  <option value='0 to 1000'> 0 to 1000 </option>
@@ -194,8 +498,16 @@ const UpdateSchool = () => {
   <div className="form-control">
     <label className="label">
       <span className="label-text mt-4">Youtube video <span className='opacity-50'>optional </span></span>
+      <section>
+
+<div className='flex'>
+  <h2 className='text-xs mr-2 text-stone-500'>{selectedYoutube}</h2>
+<input className='radio mr-4  radio-success' type="radio" color="verify" name="youtube" value="verify" data-youtube="verify" checked={selectedYoutube === 'verify'} onChange={handleYoutube} />
+<input className='radio radio-error' type="radio" color="not verify" name="youtube" value="not verify" data-youtube="not verify" checked={selectedYoutube === 'not verify'} onChange={handleYoutube} />
+    </div>
+</section>
     </label>
-    <textarea className="textarea input-sm textarea-success" placeholder="Exmple : https://youtu.be/8UVNT4wvIGY" name='youtube'></textarea> 
+    <textarea ref={youtube} className="textarea input-sm textarea-success" placeholder="Exmple : https://youtu.be/8UVNT4wvIGY" name='youtubevideo'></textarea> 
   </div>
   <h1 className='bg-gray-400 rounded text-white'>Grading</h1>
   {/* // overall  niche grade start */}
@@ -304,13 +616,13 @@ const UpdateSchool = () => {
     <label className="label">
       <span className="label-text">Math test scores</span>
     </label>
-    <input type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='math'/> </div>
+    <input ref={math} type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='math'/> </div>
 {/*  */}
 <div className="form-control">
     <label className="label">
       <span className="label-text">Reading / language art scores</span>
     </label>
-    <input type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='reading'/> </div>
+    <input ref={reading} type="text" placeholder="Example: 80" className="input input-bordered input-info w-full max-w-xs" name='reading'/> </div>
 {/*  */}
 <div className="form-control">
     <label className="label">
@@ -318,9 +630,59 @@ const UpdateSchool = () => {
     </label>
     <input type="text" placeholder="Example: 13:1 " className="input input-bordered input-info w-full max-w-xs" name='ratio'/> </div>
 {/*  */}
+<h1 className='bg-gray-400 rounded text-white'>	Verify sign for gold member </h1>
+{/* verify sign */}
+<section>
+{/* sign start  */}
+{/* <h1 className='text-left'>school</h1> */}
+{/* <div className="form-control">
+  <label className="label cursor-pointer">
+    
+    <span className="label-text">Red pill</span> 
+    <input type="radio" name="radio-10" className="radio checked:bg-red-500" checked />
+  </label>
+</div>
+<div className="form-control">
+  <label className="label cursor-pointer">
+    <span className="label-text">Blue pill</span> 
+    <input type="radio" name="radio-10" className="radio checked:bg-blue-500" checked />
+  </label>
+</div> */}
+{/* sign  end */}
 
 
+</section>
 
+
+{/* new add */}
+
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Website </span>
+    </label>
+    <input type="text" placeholder="www.bestschoolpk.com " className="input input-bordered input-info w-full max-w-xs" name='website'/> </div>
+{/*  */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Contact info </span>
+    </label>
+    <input ref={contact} type="text" placeholder="01930333 " className="input input-bordered input-info w-full max-w-xs" name='contact'/> </div>
+{/*  */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Gmail </span>
+    </label>
+    <input type="text" placeholder="pk@gmail.com " className="input input-bordered input-info w-full max-w-xs" name='gmail'/> </div>
+{/*  */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">Google map link </span>
+    </label>
+    <input type="text" placeholder="copy link from google maps url ,Example : https://www.google.com/maps/@31.2541795,37.3195665,6z" className="input input-bordered input-info w-full max-w-xs" name='map'/> </div>
+{/*  */}
+
+
+{/* new add */}
 
 
 {/* student result */}
@@ -329,6 +691,10 @@ const UpdateSchool = () => {
    
      </div>
 </form>
+
+</div>
+</div>
+</div>
         </div>
     );
 };

@@ -1,0 +1,30 @@
+.hand{
+    background-image: url(/src/img/img-flower.jpg);
+    background-image: url(/src/img/img-3.jpg);
+    background-size: cover;
+     
+   background-repeat: no-repeat;
+    /* background-size: contain; */
+   
+   
+}
+.flower{
+    background-image: url(/src/img/img-flower.jpg);
+   
+    background-size: cover;
+     
+   background-repeat: no-repeat;
+    /* background-size: contain; */
+   
+   
+}
+.flowertow{
+    background-image: url(/src/img/img-5.jpg);
+   
+    background-size: cover;
+     
+   background-repeat: no-repeat;
+    /* background-size: contain; */
+   
+   
+}

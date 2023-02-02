@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdLocationOn } from "react-icons/md";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { MdLocationCity } from "react-icons/md";
@@ -9,18 +9,66 @@ import map from '../../assets/map-9.json'
 import { AiOutlineLink } from 'react-icons/ai';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { ImLocation2 } from 'react-icons/im';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaSearchengin } from 'react-icons/fa';
 import Lottie from "lottie-react"
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Auth/AuthProvider';
 
 const Show = (props) => {
+ 
   const [searchSchool, setSearchSchool] = useState([]);
   const [schoolname, setSchoolName] = useState("")
   
+  const {user,loading}=useContext(AuthContext)
+  const [admin,setAdmin]=useState([])
+  const navigate=useNavigate()
+  const handleDelete=()=>{
+    var answer = window.confirm("Delete this school?");
+    if(answer){
+      fetch(`https://d-azure.vercel.app/deletearea/${d._id}`,{
+    
+    
+      method: 'DELETE'
+      
+      })
+      .then(res=>res.json)
+      .then(er=>console.error(er))
+   
+     
+   setTimeout(()=>{
+    toast.error(`school ${d.school} deleted`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });  
+            },1500)
+            navigate('/')
+    }
+  
+      
+    
+    }
+    
+
+  useEffect(()=>{
+
+    fetch(`https://d-azure.vercel.app/accountType?email=${user?.email}`)
+  
+    .then(res=>res.json())
+    .then(data=> setAdmin(data))
+
+},[user?.email])
+
 
   useEffect(() => {
 
+  
     fetch(`https://d-azure.vercel.app/serachSchool/${schoolname}`)
     //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
     .then(res => res.json())
@@ -35,14 +83,38 @@ const Show = (props) => {
 
 
   const {d}=props
+//
+  useEffect(() => {
+    document.title = "";
+    window.history.pushState({}, '/', d.school);
+  }, []);
+  // const [url, setUrl] = useState(window.location.pathname);
+
+  // useEffect(() => {
+  //   window.history.pushState({}, null, url);
+  // }, [url]);
+  // setUrl('/school');
+
+  // useEffect(() => {
+  //   document.title  =  d.school ;
+  // }, []);
+ //principle email
+ useEffect(() => {
+  document.title = `${d.school}`;
+  window.history.pushState({}, `${d.school}`, `/${d.city} /${d.school} `);
+}, []);
+
+ const [principle , setPrinciple]= useState([])
 
  
+     
+ //principle email
 
   
 
 //extra code for rating recieve
 
-   
+
 const [showcomment,setshowcomment]=useState([]);
  
     
@@ -129,7 +201,7 @@ useEffect(()=>{
   //submit
   
      
-
+ 
   }
 
   return (
@@ -137,7 +209,7 @@ useEffect(()=>{
   {/* <button onClick={()=>props.handdleCompare(d)}  className='btn '>compare</button> */}
       {/* school info banner start  */}
       <section className='divide colorBlue text-white'>
-
+      
    {/* school img start  */}
    <div className="card w-96 colorBlue text-white ml-2 ">
 
@@ -255,56 +327,68 @@ useEffect(()=>{
     
     <li className='mt-5 flex'><ImLocation2 className='mt-1 mr-2'/> {d.location}</li>
     {/* modal */}
-    <li className='mt-5 '> 
-
+    <li className='mt-5 flex'> 
+    <AiOutlinePhone className='mt-1 mr-2'/>
 {/* The button to open modal */}
-<label htmlFor="my-modal-4" className="text-white flex hover:text-blue-400 "> <AiOutlinePhone className='mt-1 mr-2'/>Contact info</label>
+<label htmlFor="my-modal-4" className="text-white hover:text-blue-400 "> Contact info </label>
 
 {/* Put this part before </body> tag */}
 <input type="checkbox" id="my-modal-4" className="modal-toggle" />
 <label htmlFor="my-modal-4" className="modal cursor-pointer ">
   <label className="modal-box relative " htmlFor="">
-    <h3 className="text-lg text-black font-bold "> phone number : <br /> Gmail :</h3>
+    <h3 className="text-lg text-black font-bold "> phone number : {d.contact} <br /> Gmail : {d.gmail}</h3>
      </label>
 </label>
 
     </li>
+  
+    {/* <li className='mt-5'><a className='flex hover:underline hover:text-blue-400' href="https://www.youtube.com/watch?v=lHgtB7DuOD8&ab_channel=Yuvrajstudio%28Ufetal%29"><AiOutlineLink className='mr-2 mt-1 text-blue-400 rounded'/>  Website </a></li>
+    */}
+    <p className='flex mt-5 text-white hover:text-blue-400 '><AiOutlineLink/> <a className='ml-2' href={d.website}>   Website  </a> </p>
+     {/*  update */}
+
+    <div className='flex'>
+
+    {
+     admin.map(s=>  <h1>
+
+
+   {
+    s?.accountType ==='admin' ||  s.accountType ==='moderator' ||  d.email == user?.email ?
+    <>
+    <li className='btn mt-7 btn-success btn-outline  btn-sm'>  <Link className='hover:bg-gray-200  p-2   text-left' to={`/UpdateSchool/${d._id}`} >  Edit school </Link>
+  </li>
+
+  <li>
+    <button onClick={handleDelete} className='btn btn-outline btn-warning btn-sm mt-2'> Delete school </button>
+  </li>
+    </>
+  :
+  <></>
+   }
+    
+
+     </h1>)
+
+
+    }
+
+{/* {
+    d.email == user?.email  ?
+
+    <>
+     <li className='btn mt-7 btn-outline btn-success btn-sm ml-2'>  <Link className='hover:bg-gray-200  p-2   text-left' to={`/UpdateSchool/${d._id}`} > update your school </Link>
+  </li>
+    </>
+    :
+    <></>
    
-    <li className='mt-5'><a className='flex hover:underline hover:text-blue-400' href="https://www.youtube.com/watch?v=lHgtB7DuOD8&ab_channel=Yuvrajstudio%28Ufetal%29"><AiOutlineLink className='mr-2 mt-1 text-blue-400 rounded'/>  Website </a></li>
-    <li className='mt-2'>
-     {/* modal update */}
 
-
- <section className='text-red-400'>
-        
-
-        {/* The button to open modal */}
-        <label htmlFor="my-modal-10" className="btn btn-outline btn-sm btn-success">Update School</label>
-        
-        {/* Put this part before </body> tag */}
-        <input type="checkbox" id="my-modal-10" className="modal-toggle" />
-        <div className="modal modal-content-scroll flex overflow-y-scroll">
-          <form onSubmit={handleEdit} className="modal-box relative">
-            <label htmlFor="my-modal-10" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-            <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-            <input      type="text" name='students' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
-           <br /> <br />
-          
-            <textarea   onChange className="textarea textarea-accent w-full" name='school' placeholder="Article detail" ></textarea>
-           
-           <br /> <br /> <button className="btn  btn-success">Update Article </button>
-           
-          </form>
-          
-        </div>
-        
-        
-               
-    </section>  
+  } */}
+    </div>
       
       
-     </li>
+    
     </div>
   
    
@@ -315,14 +399,11 @@ useEffect(()=>{
 <div className="card lg:w-96 sm:w-12 ">
 <h2 className="card-title ml-4 ">Locate school on Google map</h2>
 
-<div className='justify-self-center lg:w-60 sm:48'><Lottie animationData={map}/></div>
+<a href={d.map}  ><div className='justify-self-center lg:w-60 sm:48'><Lottie animationData={map}/></div>
+</a>
 
 
 
-<div className="card-body">
-   
-   
-  </div>
 </div>
 
 </div>

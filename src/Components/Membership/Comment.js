@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthProvider';
-
+import { CgProfile } from 'react-icons/cg';
+import { AiOutlineFieldTime } from 'react-icons/ai';
+import Fs2howComment from './Fs2Comment';
 const Comment = ({d}) => {
 
      
@@ -84,6 +86,10 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
   
    // Fri Jun 17 2022 11:27:28 GMT+0100 (British Summer Time)
 
+   const [showcomment, setshowcomment] = useState([]);
+console.log('neeeeeeee',showcomment)
+
+       
 
 
     const handleAdd=(event)=>{
@@ -91,15 +97,16 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
      
 
     
-     
+      event.preventDefault()
 
 
-        const date = new Date();
+      const date = new Date();
+
+   
+    const dateString = date.toLocaleDateString();
+    const timeString = date.toLocaleTimeString();
         
-        
-      
-        
-        event.preventDefault()
+      console.log('dddddddddddd',date)
        
 
         const comment = event.target.comment.value
@@ -114,24 +121,27 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
 
           //new     
           comment : comment,
-          school: d.school,
-            combine: d.combine,
+          // school: d.school,
            
            
             email:  user?.email || 'parents',
-            date: date,
+            // datenew: datenew,
+            // time: time,
+            date:dateString,
+            time: timeString,
             selectedOption: selectedOption,
-            rating: overallrating
+            rating: overallrating,
            
+            combine: d.combine
            
           
-         
           
         
             
               
           }
       
+          setshowcomment([...showcomment, submit]);
         
         fetch('https://d-azure.vercel.app/givecomment',{
           
@@ -155,9 +165,9 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
         })
       
         
-        setTimeout(()=>{
-            window.location.reload(false);   
-            },1500)
+        // setTimeout(()=>{
+        //     window.location.reload(false);   
+        //     },1500)
 
 
             toast.success(`Comment Added !`, {
@@ -177,6 +187,33 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
             
            
           }
+
+
+          // new coode 
+          useEffect(()=>{
+            fetch(`https://d-azure.vercel.app/getcomment?combine=${d?.combine}`)
+            
+            .then(res=>res.json())
+            .then(data=>setshowcomment(data))
+          
+                  
+            
+                },
+                
+                [])
+                
+      
+                const sum = showcomment.map(item => parseFloat(item.rating)).reduce((acc, val) => acc + val, 0);
+                const average = sum / showcomment.length;
+                console.log('avg',average); 
+                console.log('length',showcomment.length); 
+                console.log('sum',sum); 
+                const reviews =showcomment.length;
+                const ratings = Math.round(average);
+                console.log('ratings',ratings)
+      
+               
+          //  new coode 
     return (
         <div className='text-left'>
             <section className='grid lg:grid-cols-3 sm:grid-cols-1'>
@@ -241,89 +278,7 @@ const   avgrating=parseFloat(betaavgrating).toFixed(1);
  <div  className='text-white'>
  Overall experience ({overallrating})
  </div>
-             <form className='mb-1'>
-             <div className="rating ">
-
-             {
-     overallrating =='1' || overallrating =='1.0' ||  overallrating =='1.1' || overallrating =='1.2' || overallrating =='1.3' ||  overallrating =='1.4' ||      overallrating =='1.5' || overallrating =='1.6' ||  overallrating =='1.7' || overallrating =='1.8' || overallrating =='1.9'      ?
-     <>
-     <input value="1" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  defaultChecked/>
-     <input value="2" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="3" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="4" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="5" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-        
-     </>
-     :
-     <></>
-
-   }
-
-{
-     overallrating =='2' || overallrating =='2.0' ||  overallrating =='2.1' || overallrating =='2.2' || overallrating =='2.3' ||  overallrating =='2.4' ||      overallrating =='2.5' || overallrating =='2.6' ||  overallrating =='2.7' || overallrating =='2.8' || overallrating =='2.9'      ?
-     <>
-     <input value="1" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="2" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
-     <input value="3" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="4" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="5" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-        
-     </>
-     :
-     <></>
-
-   }
-  
-{
-     overallrating =='3' || overallrating =='3.0' ||  overallrating =='3.1' || overallrating =='3.2' || overallrating =='3.3' ||  overallrating =='3.4' ||      overallrating =='3.5' || overallrating =='3.6' ||  overallrating =='3.7' || overallrating =='3.8' || overallrating =='3.9'      ?
-     <>
-     <input value="1" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="2" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="3" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
-     <input value="4" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="5" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-        
-     </>
-     :
-     <></>
-
-   }
-     
-{
-     overallrating =='4' || overallrating =='4.0' ||  overallrating =='4.1' || overallrating =='4.2' || overallrating =='4.3' ||  overallrating =='4.4' ||      overallrating =='4.5' || overallrating =='4.6' ||  overallrating =='4.7' || overallrating =='4.8' || overallrating =='4.9'      ?
-     <>
-     <input value="1" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="2" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="3" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="4" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
-     <input value="5" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-        
-     </>
-     :
-     <></>
-
-   }
-   
-        
-{
-     overallrating =='5' || overallrating =='5.0' || overallrating =='5.1' ?
-     <>
-     <input value="1" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="2" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="3" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-     <input value="4" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-     <input value="5" onChange={handleRating} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
-        
-     </>
-     :
-     <></>
-
-   }
-   <h1 className='text-gray-400 text-xs mt-2 ml-3'>optional</h1>
-   
-    
- </div>
-             </form>
+            
 </div>
 
 <div>
@@ -386,8 +341,19 @@ selectedOption === 'no' ?
                
                
                </form>
+{/* show comment  */}
+{
+
+
+    
+  showcomment.map(numbers=> <h1>
+    
+    <Fs2howComment  numbers={numbers}>  </Fs2howComment>
+
  
 
+  </h1>)
+}
 
                    </div>
     );

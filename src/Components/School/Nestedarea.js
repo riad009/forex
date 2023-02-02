@@ -30,13 +30,13 @@ const Nestedarea = ({nested}) => {
     });
 
     return (
-        <div>
+        <div >
 
 
        
 
 
-       <button className="btn btn-primary m-2 flex  "><Link to={`/aread/${nested._id}`} >{nested.city}</Link></button>
+       <button className="glass  btn btn-outline btn-primary px-16 text-left justify-left my-2 flex  "><Link to={`/aread/${nested._id}`} >{nested.city}  </Link></button>
    
 
         </div>

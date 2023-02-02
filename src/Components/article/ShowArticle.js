@@ -44,15 +44,16 @@ const ShowArticle = ({article}) => {
 
   
   <div className="card-body">
-    <h2 className="card-title">
+    <h2 className="card-title text-justify">
       {article.title}
-      <div className="badge badge-secondary">NEW</div>
+      {/* <div className="badge badge-secondary">NEW</div> */}
     </h2>
     <p className='text-justify'>{article.details.slice(0,350)} 
     
     
     <button className="text-blue-200"><Link to={`/recentarticled/${article._id}`} >... more</Link></button>
        
+        
     </p>
     <div className="card-actions justify-end">
     {/* <button onClick={handleDelete}  className="btn btn-outline btn-warning">Delete Task {article.title}</button>
@@ -62,6 +63,8 @@ const ShowArticle = ({article}) => {
 
 
     </div>
+    <br /> <button className="btn btn-info btn-sm mt-2 btn-wide mb-3"><Link to={`/recentarticled/${article._id}`} >comment </Link></button>
+  
   </div>
 </div>
         </div>

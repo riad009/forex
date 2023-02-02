@@ -13,8 +13,14 @@
   
 }
 .right{
- background-color: #C7E8FB;
- padding-bottom: 5%;
+   /* background-image: url(/src/img/img-3.jpg);
+   
+ 
+  background-size: cover;
+ background-size: contain; */
+ /* background-color: #C7E8FB; */
+ 
+ /* padding-bottom: 5%; */
 }
 
 .divide{
@@ -35,7 +41,8 @@
   .divide{
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 2%;
+  /* margin-bottom: 2%; */
+  
   }
 
   .mobile{

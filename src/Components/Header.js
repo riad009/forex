@@ -6,6 +6,7 @@ import { FaSearchengin } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { RiFindReplaceLine } from 'react-icons/ri';
 import { GoVerified } from 'react-icons/go';
+import { GiMoebiusStar } from 'react-icons/gi';
 import Area from './School/Area';
 
 
@@ -66,9 +67,9 @@ else {
 
   }
     return (
-        <div className='shadow-2xl '>
+        <div className=' shadow-2xl '>
 
-           <div className="navbar bg-blue-800 shadow-2xl">
+           <div className="navbar   bg-blue-800 shadow-2xl">
 
 
 
@@ -182,7 +183,7 @@ admin.map(s=>  <h1>
 {
 
 s.accountType=='golden' ?
-<p className='text-blue-400 p-4' > <GoVerified/> </p>
+<p className='text-yellow-400 p-4' > <GiMoebiusStar/> </p>
 :
 <></>
 
@@ -347,7 +348,7 @@ s.accountType=="admin"?
 <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
     <a className='btn btn-outline btn-success btn-sm m-2'> <Link to={'/darticle'}> Edit / Delete Article</Link></a>
     <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
-    <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}> User control</Link></a>
+
 
 
 </>
@@ -369,7 +370,7 @@ admin.map(s=> <h1>
 
 s.accountType=="moderator"?
 <> 
-<a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}> User control</Link></a>
+<a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminmoderator'}>User control </Link></a>
 <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
     <a className='btn btn-outline btn-success btn-sm m-2'> <Link to={'/darticle'}> Edit / Delete Article</Link></a>
     <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>

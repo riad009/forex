@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Nestedarea from './Nestedarea';
-import city from '../../assets/find-2.json'
+import city from '../../assets/banner-6.json'
 import Lottie from "lottie-react"
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthProvider';
@@ -76,7 +76,7 @@ const Areacard = ({name}) => {
 
            
     return (
-     <div >
+     <div  className='hand'>
 
 <div >
 

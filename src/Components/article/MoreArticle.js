@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthProvider';
+import ArticleComment from './ArticleComment';
 
 
 const MoreArticle = () => {
@@ -75,7 +76,7 @@ console.log("edit call",article)
 
   }
     return (
-        <div className='m-4'>
+        <div className='m-4 hand'>
             {/* <h1 className="text-5xl font-bold mt-6 text-blue-400 bg-pink-100">Article Details</h1>
   */}
 <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -95,6 +96,11 @@ console.log("edit call",article)
   </div>
 </div>
 
+{/* article comment */}
+<div>
+   <ArticleComment d={detail} ></ArticleComment>
+
+</div>
         </div>
     );
 };
