@@ -71,7 +71,7 @@ function App() {
           },
           {
             path: '*',
-            element: <Home></Home> ,
+           element:   <Home></Home>
           },
           {
             path: '/testok',

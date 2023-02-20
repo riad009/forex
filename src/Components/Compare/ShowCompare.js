@@ -111,7 +111,7 @@ detail.map(d=>  <h1>
 
 
 <Graph  sc={sc}></Graph>
-<Link to={`/schoolCompareShow/${sc._id}`} className='hover:text-blue-400  hover:underline p-2 text-xl  justify-between mt-2 ' > {sc.school}</Link>
+<Link to={`/schoolCompareShow/${sc.school}`} className='hover:text-blue-400  hover:underline p-2 text-xl  justify-between mt-2 ' > {sc.school}</Link>
 
 
 

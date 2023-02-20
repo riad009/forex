@@ -4,7 +4,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react"
-import find from '../../assets/login-4.json'
+import find from '../../assets/login-3.json'
 import { FcGoogle } from 'react-icons/fc';
 
 const Registration = () => {

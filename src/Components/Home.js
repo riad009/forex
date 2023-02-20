@@ -162,7 +162,7 @@ Towschoolfeatures.map(sc=>
 <div className='justify-self-center w-96'><Lottie animationData={city} /></div>
 </div>
 
-<div className='mobile  right  text-xl '>
+<div  className='mobile  right  text-xl '>
 <h1 className=' pc mt-4 text-2xl font-mono  font-bold '>locate the school</h1>
 
 <h1 className='pc mt-3 font-bold text-3xl '>THAT IS MOST SUITABLE FOR YOU</h1>
@@ -184,7 +184,7 @@ Towschoolfeatures.map(sc=>
    
 {
  searchSchool.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc._id}`} >  <p className='flex justify-evenly'>{sc.school} <p className='text-xs ml-2 text-slate-500'>  <p className='flex mt-1'><p className='mt-1'><CiLocationOn/></p> {sc.city}</p>    </p> </p> </Link>)
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  <p className='flex justify-evenly'>{sc.school} <p className='text-xs ml-2 text-slate-500'>  <p className='flex mt-1'><p className='mt-1'><CiLocationOn/></p> {sc.city}</p>    </p> </p> </Link>)
 
   }
  </div>
@@ -202,7 +202,7 @@ Towschoolfeatures.map(sc=>
    
 {
  towtown.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc._id}`} >  {sc.school} </Link>)
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.school} </Link>)
 
   }
  </div>
@@ -231,7 +231,7 @@ Towschoolfeatures.map(sc=>
    
 {
  towsalaryRangeSchool.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc._id}`} >  {sc.school} </Link>)
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.school} </Link>)
 
   }
  </div>
@@ -271,7 +271,7 @@ Towschoolfeatures.map(sc=>
    
 {
  Towschoolfeatures.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc._id}`} >  {sc.school} </Link>)
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.school} </Link>)
 
   }
  </div>
@@ -305,7 +305,7 @@ Towschoolfeatures.map(sc=>
      </div>
      <HandDesign></HandDesign>
      <School></School>
-     <RankSchoo></RankSchoo>
+     {/* <RankSchoo></RankSchoo> */}
      <SHome></SHome>
      <Article></Article>
 

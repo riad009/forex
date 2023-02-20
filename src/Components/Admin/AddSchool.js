@@ -5,7 +5,28 @@ import { AuthContext } from '../Auth/AuthProvider';
 import './AddSchool.css'
 
 const AddSchool = () => {
+  const options = [
+    "Robotics",
+    "Nazra",
+    "Sports",
+    "Science Lab",
+    "Computer Literacy",
+    "Library",
+    "Swimming pool",
+    "Co education",
+    "Agha Khan Board",
+    "Only Girls",
+  ];
+  const [checkedOptions, setCheckedOptions] = useState([]);
+  const handleCheck = (option) => {
+    if (checkedOptions.includes(option)) {
+      setCheckedOptions(checkedOptions.filter((o) => o !== option));
+    } else {
+      setCheckedOptions([...checkedOptions, option]);
+    }
+  }
 
+  console.log('ccc',checkedOptions)
 // total student verify
 
   const [selectedTotalStudents,setselectedTotalStudents] = useState('verify');
@@ -174,12 +195,13 @@ console.log('curricuar',selectedcurricular)
 
         const category = event.target.category.value
         const city = event.target.city.value
-        const school = event.target.school.value
+        const school = event.target.school.value.trim()
+       const  removespace = school.split(' ').join('');
         const students = event.target.students.value
         const location = event.target.location.value
         const grades = event.target.grades.value
         const img = event.target.img.value
-        const schoolType = event.target.schoolType.value
+        // const schoolType = event.target.schoolType.value
         const salaryrange = event.target.salaryrange.value
         const youtube = event.target.youtubevideo.value
       //  grades
@@ -202,8 +224,9 @@ console.log('curricuar',selectedcurricular)
       const contact = event.target.contact.value
       const gmail = event.target.gmail.value
       const map = event.target.map.value
+      const schoolName = event.target.schoolName.value
     
-      
+      // const schoollink = event.target.school.value.trim();
     
 
           const submit={  
@@ -214,11 +237,11 @@ console.log('curricuar',selectedcurricular)
           category: category ,
           
           city: city,
-          school: school,
+          school: removespace,
           students: students,
           location: location,
           img: img,
-          schoolType: schoolType,
+          // schoolType: schoolType,
           salaryrange: salaryrange,
           youtube: youtube,
           combine:combine,
@@ -252,6 +275,10 @@ console.log('curricuar',selectedcurricular)
             contact:contact,
             gmail:gmail,
             map:map,
+            checkedOptions:checkedOptions,
+            
+            schoolName: schoolName,
+
             
           
           
@@ -304,7 +331,9 @@ console.log('curricuar',selectedcurricular)
         //   add school
           
        
+// new code 2/7/2023
 
+  
 
     return (
         <div className='grid lg:grid-cols-2 grid grid-cols-1'>
@@ -323,7 +352,7 @@ console.log('curricuar',selectedcurricular)
       <div className="text-xs"> <div className='flex  '>
       <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
    
-      <span >City name must be uniq! only one town name will exist at a time</span>
+      <span >City name must be uniq! only one city name will exist at a time</span>
         </div> </div>
     </div>
   </div>
@@ -355,7 +384,7 @@ console.log('curricuar',selectedcurricular)
   </div>
  
   <div className="form-control mt-6">
-    <button className="btn btn-primary">Add this Town</button>
+    <button className="btn btn-primary">Add this City</button>
    
      </div>
 
@@ -405,9 +434,9 @@ console.log('curricuar',selectedcurricular)
   {/* // */}
   <div className="form-control ">
     <label className="label">
-      <span className="label-text">local Area name / Town name </span>
+      <span className="label-text">Town name on this city </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='city'/> </div>
+    <input type="text" placeholder="add a town on this city" required className="input input-bordered input-info w-full max-w-xs" name='city'/> </div>
 
   {/* // */}
 
@@ -416,7 +445,15 @@ console.log('curricuar',selectedcurricular)
     <label className="label">
       <span className="label-text">School name </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='school'/>
+    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='schoolName'/>
+   </div>
+   {/*  */}
+  {/* // */}
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text">School url link </span>
+    </label>
+    <input type="text" placeholder="example: townSchool , karachi Public School"  className="input input-bordered input-info w-full max-w-xs" name='school'/>
    </div>
    {/*  */}
   <div className="form-control">
@@ -513,10 +550,28 @@ console.log('curricuar',selectedcurricular)
     <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
 
   {/* // */}
+  <br />
+  <h4>  School Features</h4> 
+  <hr />
+  <div className="checkbox-container">
+
+      {options.map((option) => (
+        <label key={option} className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={checkedOptions.includes(option)}
+            onChange={() => handleCheck(option)}
+          />
+          {option}
+        </label>
+      ))}
+    </div>
+    <hr />
+  {/* // features school mutiple*/}
 
   {/* // features school */}
   
-  <select required name='schoolType' className=" select-info  select w-full max-w-xs">
+  {/* <select required name='schoolType' className=" select-info  select w-full max-w-xs">
   <option  disabled selected >school features</option>
   
  <option value='Robotics'>  Robotics </option>
@@ -530,7 +585,7 @@ console.log('curricuar',selectedcurricular)
  <option value='Agha Khan Board '>   Agha Khan Board </option>
  <option value='Only Girls'>   Only Girls </option>
   
-</select>
+</select> */}
 
 <section className='mt-4'>
 
@@ -551,7 +606,7 @@ console.log('curricuar',selectedcurricular)
  <option value='1001 to 2500'>  1001 to 2500 </option>
  <option value='2500 to 5000'>  2500 to 5000 </option>
  <option value='5001 to 10000'>  5001 to 10000 </option>
- <option value='100001 to 30000'>  100001 to 30000</option>
+ <option value='10000 to 30000'>  10000 to 30000</option>
  
  
   
@@ -570,6 +625,8 @@ console.log('curricuar',selectedcurricular)
     <input type="text" placeholder="copy link from google maps url ,Example : https://www.google.com/maps/@31.2541795,37.3195665,6z" className="input input-bordered input-info w-full max-w-xs" name='map'/> </div>
 {/*  */}
 </section>
+
+
 
   <section>
      

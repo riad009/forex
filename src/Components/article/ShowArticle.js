@@ -29,7 +29,7 @@ const ShowArticle = ({article}) => {
     
     return (
         <div>
-          <div className="card w-85 bg-base-100 shadow-xl ">
+          <div className="hand card w-85 bg-base-100 shadow-xl ">
  
 
   {
@@ -47,17 +47,29 @@ const ShowArticle = ({article}) => {
     <h2 className="card-title text-justify">
       {article.title}
       {/* <div className="badge badge-secondary">NEW</div> */}
-    </h2>
-    <p className='text-justify'>{article.details.slice(0,350)} 
+    </h2 >
+
+    <div className='glass rounded'>
+    <p className='text-justify p-2 '>{article.details.slice(0,350)} 
     
     
-    <button className="text-blue-200"><Link to={`/recentarticled/${article._id}`} >... more</Link></button>
+    <button className="text-blue-400"><Link to={`/recentarticled/${article._id}`} >... more</Link></button>
        
         
     </p>
+    </div>
     <div className="card-actions justify-end">
     {/* <button onClick={handleDelete}  className="btn btn-outline btn-warning">Delete Task {article.title}</button>
                  */}
+                 {/* rating */}
+                 <div className="rating rating-xs">
+  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" checked />
+  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
+  <input type="radio" name="rating-5" className="mask mask-star-2 bg-orange-400" />
+</div>
+                 {/* rating */}
       <div className="badge badge-outline">Author : {article.name} </div> 
       <div className="badge badge-outline">Date : {date}</div>
 

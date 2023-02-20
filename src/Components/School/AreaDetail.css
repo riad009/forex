@@ -1,0 +1,9 @@
+th:first-child,
+td:first-child {
+  width: 10px;
+}
+td:nth-of-type(2) {
+    white-space: pre-wrap;
+  }
+
+ 

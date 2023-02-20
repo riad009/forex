@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthProvider';
 import SchoolPage from '../SchoolPage/SchoolPage';
 import Show from '../SchoolPage/Show';
-
+import './AreaDetail.css'
 
 
 const AreaDetails = ({d,i,handleCompare,limit,setlimit}) => {
@@ -70,7 +70,8 @@ console.log(handleCompare)
     
     
     return (
-        <div>
+  <div>
+       <div>
             <h2> </h2>
          
             <div className="overflow-x-auto mt-12  m-2 ">
@@ -93,7 +94,7 @@ console.log(handleCompare)
      
       <tr>
          <th className='m2'> {i}</th>
-        <td><button className="btn btn-outline btn-primary btn-sm "><Link to={`/school/${d._id}`} >{d.school}</Link></button>
+        <td style={{ width: 10 }}><button className="btn btn-outline btn-primary btn-sm "><Link to={`/school/${d.school}`} >{d.school}</Link></button>
    </td>
         <td>{d.location}</td>
         <td className='m-2'>{d.grades}</td>
@@ -150,6 +151,7 @@ s.accountType=="admin" || s.accountType=="moderator" || s.accountType=="silver" 
 </div>
 <ToastContainer/>
         </div>
+  </div>
     );
 };
 

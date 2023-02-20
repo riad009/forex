@@ -13,9 +13,9 @@ const SHome = () => {
         <div className='hand  container grid lg:grid-cols-2 grid-cols-1 '>
 
 
-  <div className='my-12 ' >
+  <div className=' ' >
      {/* <button className='btn btnColor'>1000 + school </button>            */}
-       <h1 className='text-justify mx-8'>Find the best school for your child and interact with school social media. bsk is the best website in Pakistan to know where the school is.
+       <h1  className='text-justify mx-8'>Find the best school for your child and interact with school social media. bsk is the best website in Pakistan to know where the school is.
    <span className='color-[#6a7199] text-xs'> <br /> Your child will learn effectively on the right platform where our moderators will target their curriculum staff across the online platform</span> </h1>
    <div className='justify-self-center mt-4 w-96'><Lottie animationData={line} /></div>
  

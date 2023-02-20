@@ -45,8 +45,8 @@ const School = ({d}) => {
       <div >
   {/* <FeaturesSchool></FeaturesSchool> */}
  
-<section className='part'>
-  
+<section className='hand'>
+{/* part */}
 {/* {
   d &&
   <> ss {d.school}
@@ -54,7 +54,7 @@ const School = ({d}) => {
 
 
 } */}
-<div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-12 mb-20    '>
+<div className='grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-3  gap-6 glass   '>
     
 
 
@@ -108,8 +108,8 @@ const School = ({d}) => {
     
     
           </div>
-        <div className='mt-12 ml-2'>
-  <Ads></Ads>
+        <div className=''>
+  {/* <Ads></Ads> pt-12 ml-2*/}
         </div>
       </section>
 

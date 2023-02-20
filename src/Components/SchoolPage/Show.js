@@ -16,12 +16,56 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthProvider';
 
 const Show = (props) => {
- 
+  const {d}=props
   const [searchSchool, setSearchSchool] = useState([]);
   const [schoolname, setSchoolName] = useState("")
   
   const {user,loading}=useContext(AuthContext)
   const [admin,setAdmin]=useState([])
+   //rank
+   const handlerank =(event)=>{
+
+    event.preventDefault()
+  
+
+      const submit={  
+     
+
+        rank: "yes"
+          
+       
+      }
+  
+    
+    fetch(`https://d-azure.vercel.app/schoolrank/${d._id}`,{
+      
+      method: 'PUT',
+      
+      headers:{
+       "content-type" : "application/json"
+      },
+      
+      
+      body: JSON.stringify(submit)
+   
+       })
+       .then(res=>res.json())
+    .then(data=>{
+          toast.success('school ranked')
+    console.log(data)
+  
+
+     
+  
+    })
+      console.log(submit)
+    
+      
+  //submit
+  
+     
+
+  }
   const navigate=useNavigate()
   const handleDelete=()=>{
     var answer = window.confirm("Delete this school?");
@@ -82,12 +126,12 @@ const Show = (props) => {
     }, [schoolname])
 
 
-  const {d}=props
+ 
 //
-  useEffect(() => {
-    document.title = "";
-    window.history.pushState({}, '/', d.school);
-  }, []);
+  // useEffect(() => {
+  //   document.title = "";
+  //   window.history.pushState({}, '/', d.school);
+  // }, []);
   // const [url, setUrl] = useState(window.location.pathname);
 
   // useEffect(() => {
@@ -99,10 +143,10 @@ const Show = (props) => {
   //   document.title  =  d.school ;
   // }, []);
  //principle email
- useEffect(() => {
-  document.title = `${d.school}`;
-  window.history.pushState({}, `${d.school}`, `/${d.city} /${d.school} `);
-}, []);
+//  useEffect(() => {
+//   document.title = `${d.school}`;
+//   window.history.pushState({}, `${d.school}`, `/${d.city} /${d.school} `);
+// }, []);
 
  const [principle , setPrinciple]= useState([])
 
@@ -223,7 +267,7 @@ useEffect(()=>{
 
 }
  
-<h1 className='mt-2 text-3xl mb-6 font-bold text-white text-left '>{d.school}</h1>
+<h1 className='mt-2 text-3xl mb-6 font-bold text-white text-left '>{d.schoolName}</h1>
 
 </div>
 {/* school img end */}
@@ -356,12 +400,18 @@ useEffect(()=>{
    {
     s?.accountType ==='admin' ||  s.accountType ==='moderator' ||  d.email == user?.email ?
     <>
-    <li className='btn mt-7 btn-success btn-outline  btn-sm'>  <Link className='hover:bg-gray-200  p-2   text-left' to={`/UpdateSchool/${d._id}`} >  Edit school </Link>
+    <div className='flex grid-cols-3'>
+    <li className='btn m-2 btn-success btn-outline  btn-sm'>  <Link className='hover:bg-gray-200  p-2   text-left' to={`/UpdateSchool/${d._id}`} >  Edit school </Link>
   </li>
 
   <li>
-    <button onClick={handleDelete} className='btn btn-outline btn-warning btn-sm mt-2'> Delete school </button>
+    <button onClick={handleDelete} className='btn btn-outline btn-warning btn-sm m-2'> Delete school </button>
   </li>
+
+  <li>
+    <button onClick={handlerank} className='btn btn-outline btn-sm btn-info m-2'> give rank </button>
+  </li>
+    </div>
     </>
   :
   <></>

@@ -21,7 +21,13 @@ const SilHome = ({d}) => {
 
   <div className="swap-on "><figure> <h1 className=' text-sm mt-4  text-white text-left '>A Degree from this Institution is a Ticket to Career Success   </h1>  <div className='justify-self-center lg:w-96 w-48'><Lottie animationData={kids} /></div>
      </figure></div>
-  <div className="swap-off "><figure><h1 className=' text-sm mt-4 text-white text-left '>Students Get Hands-on Learning Experiences and Graduate with Confidence</h1> <div className='justify-self-center lg:w-96 w-48'><Lottie animationData={kids2} /></div>
+  <div className="swap-off "><figure><h1 className=' text-sm mt-4 text-white text-left '>Students Get Hands-on Learning Experiences and Graduate with Confidence 
+  <p>
+      {d.checkedOptions?.map((item, index) => (
+        <li key={index}>{item}</li>
+      ))}
+    </p>
+  </h1> <div className='justify-self-center lg:w-96 w-48'><Lottie animationData={kids2} /></div>
   </figure>
  </div>
 </label>

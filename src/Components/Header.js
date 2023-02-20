@@ -117,7 +117,7 @@ user?.email ?
     }
       </ul>
     </div>
-    <a className="text-white btn btn-ghost normal-case text-xl"><FaSearchengin/> BSpk </a>
+    <a className="text-white btn btn-ghost normal-case text-xl"><FaSearchengin/> Best school in pakistan</a>
   
 
   </div>

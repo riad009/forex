@@ -14,7 +14,7 @@ const UpdateSchool = () => {
       const submit={  
      
 
-        rank: "yes"
+        rank: "no"
           
        
       }
@@ -34,7 +34,7 @@ const UpdateSchool = () => {
        })
        .then(res=>res.json())
     .then(data=>{
-          toast.success('school ranked')
+          toast.success('school rank removed !')
     console.log(data)
   
 
@@ -303,10 +303,11 @@ const map = event.target.map.value
     return (
         <div>
           <div>
-    <h2 onClick={handlerank} className='btn btn-success mt-2'>Give rank </h2>
+    <h2 onClick={handlerank} className='btn btn-error mt-2'>remove rank </h2>
            
 
           </div>
+
     <div className=" min-h-screen bg-base-200 ">
 <div className="hero-content flex-col ">
 <div className="text-center">

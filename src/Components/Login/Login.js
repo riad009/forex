@@ -4,7 +4,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../Auth/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import Lottie from "lottie-react"
-import find from '../../assets/login-3.json'
+import find from '../../assets/login-4.json'
 import { FcGoogle } from 'react-icons/fc';
 
 
@@ -125,7 +125,7 @@ const Login = () => {
     <label className="label">
       <span className="label-text">Password</span>
     </label>
-    <input type="text" placeholder="password" name='password' className="input input-bordered" />
+    <input type="password" placeholder="password" name='password' className="input input-bordered" />
     <label className="label">
       <a href="#" className="label-text-alt link link-hover"> <Link to='/Registration'>Dont have account? <p className='bg-gray-400 text-white '>Registration</p></Link></a>
     </label>

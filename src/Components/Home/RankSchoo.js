@@ -7,7 +7,7 @@ const RankSchoo = () => {
 console.log('ccccc')
    
 useEffect(()=>{
-    fetch('https://d-azure.vercel.app/showschoolrank')
+    fetch('https://d-azure.vercel.app/areaschool')
     
     .then(res=>res.json())
     .then(data=>setrank(data))
