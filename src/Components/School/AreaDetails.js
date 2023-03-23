@@ -70,8 +70,7 @@ console.log(handleCompare)
     
     
     return (
-  <div>
-       <div>
+        <div>
             <h2> </h2>
          
             <div className="overflow-x-auto mt-12  m-2 ">
@@ -82,34 +81,25 @@ console.log(handleCompare)
         
         <th></th>
        
-        <th>Name</th>
-        <th>Location</th>
-        <th>Grades</th>
-        <th>Students</th>
+        <th style={{ width: '70%' }}>Name</th>
+        <th style={{ width: '15%' }}>Location</th>
+        <th style={{ width: '15%' }}>Students</th>
+       
         <th></th>
-        <th></th>
+        
       </tr>
     </thead>
     <tbody>
      
       <tr>
          <th className='m2'> {i}</th>
-        <td style={{ width: 10 }}><button className="btn btn-outline btn-primary btn-sm "><Link to={`/school/${d.school}`} >{d.school}</Link></button>
+        <td><button className="btn btn-outline btn-primary btn-sm "><Link to={`/school/${d.school}`} >{d.schoolName}</Link></button>
    </td>
         <td>{d.location}</td>
-        <td className='m-2'>{d.grades}</td>
         <td>{d.students}</td>
-       {/* {
-
-        user?.email ?
-      <> <td><button onClick={()=>handleCompare(d)} className='btn ' > compare</button></td>
-      </>
-
-      :
-
-      <><button onClick={handleCompareError} className='btn btn-error'> Compare </button>
-      </>
-       } */}
+       
+       
+    
 
         {
 
@@ -151,7 +141,6 @@ s.accountType=="admin" || s.accountType=="moderator" || s.accountType=="silver" 
 </div>
 <ToastContainer/>
         </div>
-  </div>
     );
 };
 

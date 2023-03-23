@@ -44,7 +44,7 @@ Data Sources</p>      </div>
   <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">
     <span className="text-xs font-bold ">{d.CollegePrepgd}</span>
   </div>
-</div> College Prep </h1>
+</div> College Discipline </h1>
 {/*  */}
             <h1><div className="avatar placeholder">
   <div className="bg-[#CDE9C1] text-green-800 rounded-full w-8">

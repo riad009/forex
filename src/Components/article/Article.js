@@ -7,7 +7,9 @@ import Lottie from "lottie-react"
 import Ads from '../Ads/Ads';
 import AdminArticle from '../Admin/AdminArticle';
 import DeleteArticle from '../Admin/DeleteArticle';
-
+import NewArticleShow from './NewArticleShow';
+import Advertisment from '../advertisment/Advertisment';
+import  { useRef } from 'react';
 const Article = () => {
   const [article,setarticle]=useState([]);
  
@@ -26,9 +28,10 @@ const Article = () => {
        
 
         //
-        
+       
+      
     return (
-        <div className='hand'>
+        <div >
       {/* article */}
        {/* article section start */}
 
@@ -36,9 +39,10 @@ const Article = () => {
 <section>
 
 
+<div className='hand'>
 <section className='flex glass'>
 
-<div className="alert shadow-lg mb-4 glass">
+<div className="alert  glass">
   <div>
       <span className='text-blue-700 font-bold text-xl'>Recent Article </span>
       <div className='justify-self-center w-14 '> <Lottie animationData={flydot}/></div>
@@ -47,8 +51,9 @@ const Article = () => {
 </div>
 
 </section  >
+</div>
 
-<div  className=' gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+{/* <div  className=' gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
   
 {
   article.map(article=> <ShowArticle
@@ -59,6 +64,22 @@ const Article = () => {
 
 }
 
+</div> */}
+<div  className='article '>
+<div>
+  {article.map((article, index) => (
+    <div key={index}>
+      <NewArticleShow article={article}  />
+      {index !== article.length - 1 && <hr className="my-4" />} {/* Add hr tag after every article except the last one */}
+    </div>
+  ))}
+  <hr className="my-4" /> {/* Add hr tag after all articles are rendered */}
+</div>
+
+<div>
+  <Ads></Ads>
+</div>
+
 </div>
 </section>
 
@@ -66,16 +87,6 @@ const Article = () => {
 
 
 
-       {/* ad section start  */}
-
-       <div>
-       <div>
-  {/* <div>
-   <Ads></Ads>
-  </div> */}
-</div>
-       </div>
-       {/* ad section  end */}
 
 
         </div>

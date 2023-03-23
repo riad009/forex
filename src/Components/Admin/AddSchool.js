@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../Auth/AuthProvider';
 
@@ -18,6 +19,7 @@ const AddSchool = () => {
     "Only Girls",
   ];
   const [checkedOptions, setCheckedOptions] = useState([]);
+  
   const handleCheck = (option) => {
     if (checkedOptions.includes(option)) {
       setCheckedOptions(checkedOptions.filter((o) => o !== option));
@@ -201,7 +203,7 @@ console.log('curricuar',selectedcurricular)
         const location = event.target.location.value
         const grades = event.target.grades.value
         const img = event.target.img.value
-        // const schoolType = event.target.schoolType.value
+        const schoolType = event.target.schoolType.value
         const salaryrange = event.target.salaryrange.value
         const youtube = event.target.youtubevideo.value
       //  grades
@@ -225,6 +227,7 @@ console.log('curricuar',selectedcurricular)
       const gmail = event.target.gmail.value
       const map = event.target.map.value
       const schoolName = event.target.schoolName.value
+      const membership = event.target.membership.value
     
       // const schoollink = event.target.school.value.trim();
     
@@ -241,7 +244,7 @@ console.log('curricuar',selectedcurricular)
           students: students,
           location: location,
           img: img,
-          // schoolType: schoolType,
+          schoolType: schoolType,
           salaryrange: salaryrange,
           youtube: youtube,
           combine:combine,
@@ -278,6 +281,7 @@ console.log('curricuar',selectedcurricular)
             checkedOptions:checkedOptions,
             
             schoolName: schoolName,
+            membership: membership,
 
             
           
@@ -303,7 +307,7 @@ console.log('curricuar',selectedcurricular)
        
         if(data.acknowledged){
             
-            // event.target.reset()
+            event.target.reset()
        
          }
 
@@ -333,7 +337,17 @@ console.log('curricuar',selectedcurricular)
        
 // new code 2/7/2023
 
-  
+  //new admin 
+  const [admin,setAdmin]=useState([])
+  //admin
+useEffect(()=>{
+
+  fetch(`https://d-azure.vercel.app/accountType?email=${user?.email}`)
+  .then(res=>res.json())
+  .then(data=> setAdmin(data))
+
+},[user?.email])
+  //new
 
     return (
         <div className='grid lg:grid-cols-2 grid grid-cols-1'>
@@ -453,8 +467,36 @@ console.log('curricuar',selectedcurricular)
     <label className="label">
       <span className="label-text">School url link </span>
     </label>
-    <input type="text" placeholder="example: townSchool , karachi Public School"  className="input input-bordered input-info w-full max-w-xs" name='school'/>
+    <input type="text" placeholder="TownSchool"  className="input input-bordered input-info w-full max-w-xs" required name='school'/>
    </div>
+   {/*  */}
+{
+  admin.map(s=><h1>
+    {
+      s.accountType=='admin' || s.accountType=='moderator' ?
+      <>
+       <select name="membership" className="mt-2 mb-2 select select-warning w-full max-w-xs">
+  <option disabled selected>School membership</option>
+  <option value='default'>by default</option>
+  <option value='silver'>silver</option>
+  <option value='gold'>Gold</option>
+  
+</select>
+      </>
+      :
+      <>
+       <select name="membership" className="bg-red-400 mt-2 mb-2 select select-warning w-full max-w-xs">
+  <option disabled selected>Principle not allowed to select membership</option>
+  
+  
+</select>
+      </>
+    }
+  </h1>)
+}
+
+  
+
    {/*  */}
   <div className="form-control">
     <label className="label">
@@ -571,8 +613,8 @@ console.log('curricuar',selectedcurricular)
 
   {/* // features school */}
   
-  {/* <select required name='schoolType' className=" select-info  select w-full max-w-xs">
-  <option  disabled selected >school features</option>
+  <select required name='schoolType' className=" select-info  select w-full max-w-xs">
+  <option  disabled selected >school features (display)</option>
   
  <option value='Robotics'>  Robotics </option>
  <option value='Nazra'>  Nazra </option>
@@ -585,7 +627,7 @@ console.log('curricuar',selectedcurricular)
  <option value='Agha Khan Board '>   Agha Khan Board </option>
  <option value='Only Girls'>   Only Girls </option>
   
-</select> */}
+</select>
 
 <section className='mt-4'>
 
@@ -722,7 +764,7 @@ console.log('curricuar',selectedcurricular)
 </select>
 {/*  */}
   <select required name='CollegePrepgd' className=" select-info  select w-full max-w-xs">
-  <option  disabled selected >College Prep Grade</option>
+  <option  disabled selected >College Discipline Grade</option>
   
  <option value='A+'> A+ </option>
  <option value='A'>  A </option>

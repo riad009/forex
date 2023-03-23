@@ -24,6 +24,13 @@ import ShowCompare from './Components/Compare/ShowCompare';
 import UpdateArticle from './Components/Admin/UpdateArticle';
 import UpdateSchool from './Components/Admin/UpdateSchool';
 import PrivateRoute from './Components/PrivateRoutes/PrivateRoute';
+import Filter from './Components/Filter/Filter';
+
+import AdminGiveAds from './Components/advertisment/AdminGiveAds';
+import CityAds from './Components/advertisment/CityAds';
+import Advertisment from './Components/advertisment/Advertisment';
+import TownAds from './Components/advertisment/TownAds';
+import GiveAds from './Components/Admin/GiveAds';
 
 
 
@@ -124,16 +131,47 @@ function App() {
             loader:({params})=>fetch(`https://d-azure.vercel.app/area/${params.id}`)
           },
           {
-            path: '/recentarticled/:id',
-            element:  <MoreArticle></MoreArticle>,
-            loader:({params})=>fetch(`https://d-azure.vercel.app/recentarticled/${params.id}`)
+            path: '/recentarticled/:url',
+            element: <MoreArticle />,
+            loader: ({ params }) =>
+              fetch(`https://d-azure.vercel.app/recentarticled/${params.url}`),
           },
+          
           {
             path: '/updatearticleid/:id',
             element:  <UpdateArticle></UpdateArticle>,
             loader:({params})=>fetch(`https://d-azure.vercel.app/recentarticled/${params.id}`)
           },
+          {
+            path: '/filter',
+            element: <Filter></Filter>
+          },
         
+          {
+            path: '/giveads',
+            element: <AdminGiveAds></AdminGiveAds>
+          },
+          {
+            path: '/cityid/:id',
+            element: <CityAds></CityAds>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/cityid/${params.id}`)
+          },
+          
+          {
+            path: '/adsvertiesment/:id',
+            element: <Advertisment></Advertisment>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/adsvertiesment/${params.id}`)
+          },
+          {
+            path: '/townid/:id',
+            element:  <TownAds></TownAds>,
+            loader:({params})=>fetch(`https://d-azure.vercel.app/townid/${params.id}`)
+          },
+
+        {
+            path: '/GiveAds',
+            element: <GiveAds></GiveAds>
+          },
           // {
           //   path: '/recievecomment/:id',
           //   element:   <ShowComment></ShowComment>,

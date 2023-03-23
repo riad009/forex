@@ -214,8 +214,224 @@ console.log('neeeeeeee',showcomment)
       
                
           //  new coode 
+
+          // ads 3/10/2023
+//city ads
+const [city, setCity] = useState();
+
+
+useEffect(() => {
+  fetch('https://d-azure.vercel.app/townschool')
+    .then(response => response.json())
+    .then(data => {
+      setCity(data); // Update the cit state with the received data
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, []);
+// 
+const [town, settown] = useState();
+console.log('city',city)
+useEffect(() => {
+  fetch('https://d-azure.vercel.app/gettown')
+    .then(response => response.json())
+    .then(data => {
+        settown(data); // Update the cit state with the received data
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}, []);
+
+// 
+
+const categoryList = d.category
+const category = city?.filter(d => categoryList.includes(d.category));
+console.log('filteredDetails', category);
+// 
+
+const newtown = town?.map(town => town.town);
+const matchedTown = town?.filter(item => item.town.toLowerCase() === d.city.toLowerCase());
+console.log('matchedValue',matchedTown)
+// ads end
     return (
-        <div className='text-left'>
+       <section className=' '>
+     {/* <h2 className='bg-red-400'>
+red
+{categoryList2?.map(d=> <h1>
+  {d.oneads}
+</h1>)
+
+}
+
+     </h2> */}
+     {/* {category?.map(d=> <h1>
+        <div style={{ width: '60%' }}>
+  <h2 className='bg-red-400 text-white  '>
+  <div className='my-12'>
+   <div className="carousel w-full shadow-xl rounded ">
+  <div id="slide1" className="carousel-item relative w-full">
+    <img src={d.img3} className="w-full" />
+    
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide4" className="btn btn-circle">❮</a> 
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide2" className="carousel-item relative w-full">
+    <img src={d.twoads} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a> 
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide3" className="carousel-item relative w-full">
+    <img src={d.twoimg} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a> 
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+ 
+</div>
+   </div>
+
+  </h2>
+                   </div>
+                   
+        </h1>)}
+
+     {matchedTown?.map(d=> <h1>
+        <div style={{ width: '60%' }}>
+  <h2 className='bg-red-400 text-white  '>
+  <div className='my-12'>
+   <div className="carousel w-full shadow-xl rounded ">
+  <div id="slide1" className="carousel-item relative w-full">
+    <img src={d.img3} className="w-full" />
+    
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide4" className="btn btn-circle">❮</a> 
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide2" className="carousel-item relative w-full">
+    <img src={d.twoads} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a> 
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide3" className="carousel-item relative w-full">
+    <img src={d.twoimg} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a> 
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+ 
+</div>
+   </div>
+
+  </h2>
+                   </div>
+                   
+        </h1>)} */}
+
+  {category ? (
+  // Render the categories slider
+  category?.map(d => (
+    <h1>
+       <div style={{ width: '60%' }}>
+  <h2 className='bg-red-400 text-white  '>
+  <div className='my-12'>
+   <div className="carousel w-full shadow-xl rounded ">
+  <div id="slide1" className="carousel-item relative w-full">
+    <img src={d.img3} className="w-full" />
+    
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide4" className="btn btn-circle">❮</a> 
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide2" className="carousel-item relative w-full">
+    <img src={d.twoads} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a> 
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide3" className="carousel-item relative w-full">
+    <img src={d.twoimg} className="w-full" />
+    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a> 
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+ 
+</div>
+   </div>
+
+  </h2>
+                   </div>
+    </h1>
+  ))
+) : (
+  // Render the matchedTown slider
+ <h2 className='bg-red-400'> 
+ </h2>
+)}
+{
+  category?.length >0?
+  <></>
+  :
+  <>
+  {
+     matchedTown?.map(d => (
+      <h1>
+         <div style={{ width: '60%' }}>
+    <h2 className='bg-red-400 text-white  '>
+    <div className='my-12'>
+     <div className="carousel w-full shadow-xl rounded ">
+    <div id="slide1" className="carousel-item relative w-full">
+      <img src={d.img3} className="w-full" />
+      
+      <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+        <a href="#slide4" className="btn btn-circle">❮</a> 
+        <a href="#slide2" className="btn btn-circle">❯</a>
+      </div>
+    </div> 
+    <div id="slide2" className="carousel-item relative w-full">
+      <img src={d.twoads} className="w-full" />
+      <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+        <a href="#slide1" className="btn btn-circle">❮</a> 
+        <a href="#slide3" className="btn btn-circle">❯</a>
+      </div>
+    </div> 
+    <div id="slide3" className="carousel-item relative w-full">
+      <img src={d.twoimg} className="w-full" />
+      <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
+        <a href="#slide2" className="btn btn-circle">❮</a> 
+        <a href="#slide1" className="btn btn-circle">❯</a>
+      </div>
+    </div> 
+   
+  </div>
+     </div>
+  
+    </h2>
+                     </div>
+      </h1>
+    ))
+  }
+  </>
+}
+
+
+{/*  */}
+                   
+        {/*  */}
+         <div className='text-left'>
             <section className='grid lg:grid-cols-3 sm:grid-cols-1'>
 
 <div>
@@ -356,6 +572,9 @@ selectedOption === 'no' ?
 }
 
                    </div>
+
+                   
+       </section>
     );
 };
 

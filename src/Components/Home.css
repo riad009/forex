@@ -29,6 +29,12 @@
  
 }
 
+.dividehalf{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+ 
+}
+
 /* //responsive */
 @media only screen and (max-width: 479px)
    {

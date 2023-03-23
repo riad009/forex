@@ -121,16 +121,17 @@ const Deleted = ({d}) => {
   
   <div className="card-body">
     <h2 className="card-title">
-      {d.title}
+      
       <button onClick={handleDelete}  className="btn btn-outline btn-warning">Delete Article </button>
    
-      <Link className='' to={`/updatearticleid/${d._id}`} > <button className='btn btn-outline btn-success'>Edit Article</button>  </Link>
+      <Link className='' to={`/updatearticleid/${d.url}`} > <button className='btn btn-outline btn-success'>Edit Article</button>  </Link>
 
         
        
   
    
     </h2>
+    <p className='font-bold mx-2 text-left'>{d.title} </p>
     <p className='text-justify'>{d.details.slice(0,350)} 
     
     

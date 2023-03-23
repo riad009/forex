@@ -44,7 +44,7 @@ const ShowArticle = ({article}) => {
 
   
   <div className="card-body">
-    <h2 className="card-title text-justify">
+    <h2 className="glass  rounded card-title text-justify">
       {article.title}
       {/* <div className="badge badge-secondary">NEW</div> */}
     </h2 >
@@ -53,7 +53,7 @@ const ShowArticle = ({article}) => {
     <p className='text-justify p-2 '>{article.details.slice(0,350)} 
     
     
-    <button className="text-blue-400"><Link to={`/recentarticled/${article._id}`} >... more</Link></button>
+    <button className="text-blue-400"><Link to={`/recentarticled/${article.url}`} >... more</Link></button>
        
         
     </p>

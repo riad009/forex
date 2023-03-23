@@ -144,7 +144,7 @@ event.preventDefault()
                 }); 
             },1500)
      
-        navigate('/schoolCompareShow/amirjan')
+        navigate('/schoolCompareShow/amhigh')
   // dont delete this id ( it will redirect to the data)
     }
   
@@ -275,10 +275,8 @@ user?.email ?
   </div>
   {/* home */}
    {/* grades */}
-    {
-    admin.map(s=> <h1>
-
-  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+   
+  { d.membership == 'silver' || d.membership == 'gold'   ?
 
   <>
    <div className='grades' id='4' >
@@ -291,18 +289,15 @@ user?.email ?
   <> </>
 
   }
-    </h1> )
-   }
+  
      
    {/* grades */}
 
    
   {/* result */}
 
-  {
-    admin.map(s=> <h1>
-
-  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+ 
+  {  d.accountType == 'gold' ?
 
   <>
    <div className='result' id='5' >
@@ -315,17 +310,14 @@ user?.email ?
   <> </>
 
   }
-    </h1> )
-   }
+   
   {/* result */}
 
 
 
   {/* verify */}
-  {
-    admin.map(s=> <h1>
-
-  {  s.accountType == 'golden' || s.accountType == 'admin' || s.accountType == 'moderator'|| s.accountType == 'principle' ?
+ 
+  {  d.membership == 'gold'  ?
 
   <>
    <div className='verify' id='6' >
@@ -338,8 +330,7 @@ user?.email ?
   <> </>
 
   }
-    </h1> )
-   }
+   
   {/* verify */}
 
    <div className='compare' id='compare'>

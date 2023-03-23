@@ -5,6 +5,7 @@ import Lottie from "lottie-react"
 const ShowRankSchool = ({d}) => {
     return (
         <div>
+        
             <div className="card  w-96 bg-base-100 ">
                 
     
@@ -12,7 +13,7 @@ const ShowRankSchool = ({d}) => {
                 
    <div className=" card-body">
     <h2 className="card-title">
-    <Link className='hover:underline bg:text-blue-400' to={`/school/${d._id}`} >  {d.school}  </Link>
+    <Link className='hover:underline bg:text-blue-400' to={`/school/${d.school}`} >  {d.schoolName}  </Link>
       <div className="badge badge-secondary">Top school </div>  
     </h2>
     <p> 

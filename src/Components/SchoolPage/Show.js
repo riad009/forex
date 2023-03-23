@@ -10,7 +10,11 @@ import { AiOutlineLink } from 'react-icons/ai';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { ImLocation2 } from 'react-icons/im';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaSearchengin } from 'react-icons/fa';
+import { FcApproval } from 'react-icons/fc';
+import { GoVerified } from 'react-icons/go';
+import { GiRank3 } from 'react-icons/gi';
+import { MdDeleteForever } from 'react-icons/md';
+import { AiFillEdit } from 'react-icons/ai';
 import Lottie from "lottie-react"
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthProvider';
@@ -250,6 +254,7 @@ useEffect(()=>{
 
   return (
     <div className='' >
+     
   {/* <button onClick={()=>props.handdleCompare(d)}  className='btn '>compare</button> */}
       {/* school info banner start  */}
       <section className='divide colorBlue text-white'>
@@ -267,7 +272,27 @@ useEffect(()=>{
 
 }
  
-<h1 className='mt-2 text-3xl mb-6 font-bold text-white text-left '>{d.schoolName}</h1>
+<h1 className='flex mt-2 text-3xl mb-6 font-bold text-white text-left '>{d.schoolName} 
+{
+  d.membership==='gold'?
+  <><p className='ml-2 mt-1'><FcApproval/></p>
+  </>
+
+  :
+  <>
+  
+  </>
+}
+{
+  d.membership==='silver'?
+  <><p className='ml-2 mt-1'><GoVerified/></p></>
+  :
+  <>
+  
+  </>
+}
+
+</h1>
 
 </div>
 {/* school img end */}
@@ -390,7 +415,9 @@ useEffect(()=>{
     */}
     <p className='flex mt-5 text-white hover:text-blue-400 '><AiOutlineLink/> <a className='ml-2' href={d.website}>   Website  </a> </p>
      {/*  update */}
-
+     
+     {/* <p className='my-2 '><Link className='hover:underline '  to={`/adsvertiesment/${d._id}`}> Advertisments</Link>
+</p> */}
     <div className='flex'>
 
     {
@@ -400,17 +427,24 @@ useEffect(()=>{
    {
     s?.accountType ==='admin' ||  s.accountType ==='moderator' ||  d.email == user?.email ?
     <>
-    <div className='flex grid-cols-3'>
-    <li className='btn m-2 btn-success btn-outline  btn-sm'>  <Link className='hover:bg-gray-200  p-2   text-left' to={`/UpdateSchool/${d._id}`} >  Edit school </Link>
+    <div className='flex grid-cols-4 mt-2'>
+    <li>
+    <Link className='m-2 mt-2 text-sm hover:text-green-400' to={`/UpdateSchool/${d._id}`}> Edit school   </Link>
   </li>
 
   <li>
-    <button onClick={handleDelete} className='btn btn-outline btn-warning btn-sm m-2'> Delete school </button>
+    <p onClick={handleDelete} className=' m-2 hover:text-yellow-400'> <MdDeleteForever/> </p>
   </li>
 
   <li>
-    <button onClick={handlerank} className='btn btn-outline btn-sm btn-info m-2'> give rank </button>
+    <p onClick={handlerank} className='m-2  hover:text-green-400'> <GiRank3/> </p>
   </li>
+
+  
+
+  
+  
+  
     </div>
     </>
   :
@@ -422,7 +456,6 @@ useEffect(()=>{
 
 
     }
-
 {/* {
     d.email == user?.email  ?
 
@@ -466,7 +499,10 @@ useEffect(()=>{
       {/* school info  banner end  */}
 
 {/* //total students */}
-<div className='colorLightBlue  p-4 shadow-xl text-left flex text-xl text-white '>
+{
+  d.membership==='gold'?
+  <>
+  <div className='bg-[#6B2F6B]  p-4 shadow-xl text-left flex text-xl text-white '>
 <h2 className='mr-12'>{d.school} School</h2>
 <h2 className='mr-12'>{d.students} Students</h2>
 <h2 className='mr-12'>Grades {d.grades}</h2>
@@ -478,6 +514,25 @@ useEffect(()=>{
 
 
 </div>
+  </>
+
+  :
+  <>
+  <div className='colorLightBlue  p-4 shadow-xl text-left flex text-xl text-white '>
+<h2 className='mr-12'>{d.school} School</h2>
+<h2 className='mr-12'>{d.students} Students</h2>
+<h2 className='mr-12'>Grades {d.grades}</h2>
+
+
+{/* <h2 className='mr-12'>schoolType {d.schoolType}</h2>
+<h2 className='mr-12'>salaryrange {d.salaryrange}</h2> */}
+
+
+
+</div>
+  </>
+}
+
  
 
       <Silver d={d} ></Silver>

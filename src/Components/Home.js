@@ -17,10 +17,51 @@ import { CiLocationOn } from 'react-icons/ci';
 import School from './School/School';
 import HandDesign from './Home/HandDesign';
 import RankSchoo from './Home/RankSchoo';
-
+import { useRef } from 'react';
+import TopHomeAds from './HomeAds/TopHomeAds';
+import BottomHomeAds from './HomeAds/BottomHomeAds';
+import { transparent } from 'daisyui/src/colors';
+import BannerNewAds from './HomeAds/BannerNewAds';
 const Home = () => {
- 
   
+
+  
+
+
+  //new code start 3/9/2023
+  // <option value='Robotics'>  Robotics </option>
+  // <option value='Nazra'>  Nazra </option>
+  // <option value='Sports'>  Sports </option>
+  // <option value='Science Lab'>  Science Lab </option>
+  // <option value='Computer Literacy'>  Computer Literacy </option>
+  // <option value='Library'>  Library</option>
+  // <option value='Swimming pool'>  Swimming pool</option>
+  // <option value='Co education'>  Co education</option>
+  // <option value='Agha Khan Board '>   Agha Khan Board </option>
+  // <option value='Only Girls'>   Only Girls </option>
+  // 
+  const options = ["Robotics", "Nazra", "Sports", "Science Lab", "Computer Literacy","Library","Swimming pool","Co education","Agha Khan Board","Only Girls"];
+  const [selectedOptions, setSelectedOptions] = useState([]);
+console.log('selectedOptions',selectedOptions)
+  const handleOptionSelect = (event) => {
+    const { value } = event.target;
+    if (selectedOptions.includes(value)) {
+      setSelectedOptions(selectedOptions.filter((option) => option !== value));
+    } else {
+      setSelectedOptions([...selectedOptions, value]);
+    }
+  };
+  //tow
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+  
+
+  
+
+  const handleBlur = () => {
+    setIsDropdownOpen(false);
+  };
+  //new code end 
 
   const [searchSchool, setSearchSchool] = useState([]);
   const [schoolfeatures, setschoolfeatures] = useState(""); //get name from select option
@@ -29,8 +70,23 @@ const Home = () => {
   const [salaryRangeSchool, setsalaryRangeSchool] = useState(""); //get name from select option
   const [towsalaryRangeSchool, setTowsalaryRangeSchool] = useState([]) //get name from database
 
+// console.log('schoolfeatures',schoolfeatures)
+// console.log('Towschoolfeatures',Towschoolfeatures)
+console.log('towsalaryRangeSchool',towsalaryRangeSchool)
 
 
+const handleClick = (event) => {
+  event.preventDefault(); 
+  localStorage.setItem('schools', JSON.stringify(towsalaryRangeSchool));
+  localStorage.setItem('feature', JSON.stringify(selectedOptions));
+  // prevent the default behavior of the link click event
+  
+  
+     window.location.href = "/filter"; // navi gate to the "/filter" page
+     window.location.href = "/filter"; // navigate to the "/filter" page
+ 
+
+};
   const [schoolname, setSchoolName] = useState("")
  
 
@@ -93,7 +149,7 @@ useEffect(() => {
   //  fetch(`http://localhost:5000/searchSChool?searchWord=${schoolname}`)
   .then(res => res.json())
   .then(data => {
-    console.log('data',data)
+   
   settowtown(data)
   // console.log('tow', data)
   
@@ -102,7 +158,7 @@ useEffect(() => {
   
   }, [town])
   
-console.log('town',town)
+
 //salary range
 
 useEffect(() => {
@@ -136,7 +192,11 @@ fetch(`https://d-azure.vercel.app/salaryrange/${salaryRangeSchool}`)
   
 //   }, [schoolfeatures])
 
+
+
   return (
+<section>
+<TopHomeAds></TopHomeAds>
 <div className='okk ' >
 {/* {
 
@@ -175,35 +235,58 @@ Towschoolfeatures.map(sc=>
 
 <section className='flex mt-8 grid sm:grid-cols-4 md:grid-cols-4 gap-2 '>
   {/*  */}
-  <div>
-
-<input onChange={(event) => setSchoolName(event.target.value)} type="text" placeholder="school name " className="input input-bordered w-48 max-w-xs" />
-
-  {
- schoolname.length ?   <div className=" ml-4 mr-4 mt-1 shadow-xl border-4  bg-primary-content text-black text-sm justify-left text-white h-48 overflow-y-scroll flex flex-col">
-   
-{
- searchSchool.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  <p className='flex justify-evenly'>{sc.school} <p className='text-xs ml-2 text-slate-500'>  <p className='flex mt-1'><p className='mt-1'><CiLocationOn/></p> {sc.city}</p>    </p> </p> </Link>)
-
+  <div >
+  <input 
+    onChange={(event) => setSchoolName(event.target.value)} 
+    type="text" 
+    placeholder="school name" 
+    className="input input-bordered w-48 max-w-xs" 
+  />
+  
+  {schoolname.length ?   
+    <div 
+      className="border-1 shadow-xl    text-black text-sm justify-left text-white   flex flex-col p-2"
+      style={{ backgroundColor: 'white' }}
+    >
+      {
+        searchSchool.slice(0, 4).map((sc) =>
+        
+          <Link 
+            className='hover:bg-gray-200 p-1 text-left mt-1' 
+            to={`/school/${sc.school}`}
+             
+          >  
+         <hr />
+            <p className='flex justify-between'>
+              {sc.schoolName} 
+              <p className='text-xs ml-2 text-slate-500'>  
+                <p className='flex mt-1'>
+                  <p className='mt-1'><CiLocationOn/></p> {sc.city}
+                </p>    
+              </p> 
+            </p> 
+          </Link>
+        )
+      }
+    </div>
+    :
+    <></>
   }
- </div>
-  :
- <></>
-   }
- </div>
+</div>  
+ 
+
 
  <div>
 
 <input onChange={(event) => settown(event.target.value)} type="text" placeholder="Search by town " className="input input-bordered w-48 max-w-xs" />
 
   {
- town.length ?   <div className=" ml-4 mr-4 mt-1 shadow-xl border-4  bg-primary-content text-black text-sm justify-left text-white h-48 overflow-y-scroll flex flex-col">
+ town.length ?   <div className=" shadow-xl   bg-primary-content text-black text-sm justify-left text-white  flex flex-col">
    
 {
- towtown.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.school} </Link>)
-
+ towtown.slice(0, 4).map((sc) =>
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.schoolName} </Link>)
+ 
   }
  </div>
   :
@@ -220,10 +303,10 @@ Towschoolfeatures.map(sc=>
  <option value='1001 to 2500'>  1001 to 2500 </option>
  <option value='2500 to 5000'>  2500 to 5000 </option>
  <option value='5001 to 10000'>  5001 to 10000 </option>
- <option value='100001 to 30000'>  100001 to 30000</option>
+ <option value='10001 to 30000'>  10001 to 30000</option>
   
 </select>
-<div>
+{/* <div>
 
 
   {
@@ -239,14 +322,14 @@ Towschoolfeatures.map(sc=>
  <>
 </>
    }
- </div>
+ </div> */}
 </div>
 
   
 <div>
 
   
-<select onClick={(e)=>setschoolfeatures (e.target.value) }   className=" select-info  select w-40  ">
+{/* <select onClick={(e)=>setschoolfeatures (e.target.value) }   className=" select-info  select w-40  ">
   <option  disabled selected >school features</option>
   
  <option className='bg-red-400' value='close all'>Close All</option>
@@ -261,9 +344,27 @@ Towschoolfeatures.map(sc=>
  <option value='Agha Khan Board '>   Agha Khan Board </option>
  <option value='Only Girls'>   Only Girls </option>
   
-</select>
+</select> */}
 
 <div>
+      {isDropdownOpen ? (
+        <select style={{ height: "200px"}} className="select-info select w-40" multiple value={selectedOptions} onChange={handleOptionSelect} onBlur={handleBlur}>
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <button onClick={() => setIsDropdownOpen(true)}><select className="select select-info w-full max-w-xs">
+        <option disabled selected>School Features</option>
+       
+      </select></button>
+      )}
+      {/* <p>Selected Options: {selectedOptions.join(", ")}</p> */}
+    </div>
+
+{/* <div>
 
 
   {
@@ -271,7 +372,7 @@ Towschoolfeatures.map(sc=>
    
 {
  Towschoolfeatures.map((sc) =>
-   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.school} </Link>)
+   <Link className='hover:bg-gray-200  p-2   text-left' to={`/school/${sc.school}`} >  {sc.schoolName} </Link>)
 
   }
  </div>
@@ -279,7 +380,7 @@ Towschoolfeatures.map(sc=>
  <>
 </>
    }
- </div>
+ </div> */}
 
    </div>
    
@@ -289,8 +390,17 @@ Towschoolfeatures.map(sc=>
 
   <div className='flex justify-center'>
 
-  <button  className=" pc mt-5 btn btn-active bg-green-600 mt-12 ">  <Link to='school'>Find school </Link></button>
-
+  {/* <button  className=" pc mt-5 btn btn-active bg-green-600 mt-12 ">  <Link to='/filter'>Find school </Link></button> */}
+{/* <Link to={`/filter?schools=${JSON.stringify(towsalaryRangeSchool)}`}>
+      Go to Filter
+    </Link>
+     */}
+     
+     <button className=' className=" pc mt-5 btn btn-active bg-green-600 mt-12 "'>
+      <Link  to="/filter" onClick={handleClick}>
+      Find school  
+    </Link>
+    </button>
    <div className='justify-self-center w-40'><Lottie animationData={find} /></div>
   </div>
 
@@ -305,11 +415,16 @@ Towschoolfeatures.map(sc=>
      </div>
      <HandDesign></HandDesign>
      <School></School>
-     {/* <RankSchoo></RankSchoo> */}
+    
      <SHome></SHome>
+     <RankSchoo></RankSchoo>
+    
      <Article></Article>
-
+     <BannerNewAds></BannerNewAds>
+     <BottomHomeAds></BottomHomeAds>
+  
     </div>
+</section>
   );
 };
 

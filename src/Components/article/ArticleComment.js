@@ -27,6 +27,7 @@ const date = new Date()
       date: date,
       combine: d.combine,
       email: user.email,
+      name: d.name,
  
           
       }
@@ -97,8 +98,8 @@ const date = new Date()
    //cp comment show
 
     return (
-        <div>
-            <h2>Article Comment</h2>
+        <div className='text-left'>
+            <h2 className='p-2 bg-primary text-white my-3'>View Comments</h2>
             {/* comment area */}
          <form  onSubmit={handleComment}>
 
@@ -139,3 +140,4 @@ const date = new Date()
 };
 
 export default ArticleComment;
+

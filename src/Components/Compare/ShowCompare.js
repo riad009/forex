@@ -164,7 +164,7 @@ detail.map(d=>  <h1>
      
       
       <tr className="active">
-        <th>Salary range</th>
+        <th>School Tution Fees</th>
         <td>{d.salaryrange}</td>
         <td>{p.salaryrange} </td>
       </tr>

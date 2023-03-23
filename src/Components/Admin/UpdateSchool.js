@@ -1,8 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../Auth/AuthProvider';
 
 const UpdateSchool = () => {
+  
+  const {user,loading}=useContext(AuthContext)
+  const options = [
+    "Robotics",
+    "Nazra",
+    "Sports",
+    "Science Lab",
+    "Computer Literacy",
+    "Library",
+    "Swimming pool",
+    "Co education",
+    "Agha Khan Board",
+    "Only Girls",
+  ];
+  const [checkedOptions, setCheckedOptions] = useState([]);
+  
+  const handleCheck = (option) => {
+    if (checkedOptions.includes(option)) {
+      setCheckedOptions(checkedOptions.filter((o) => o !== option));
+    } else {
+      setCheckedOptions([...checkedOptions, option]);
+    }
+  }
   const detail = useLoaderData()
 
   //rank
@@ -54,7 +79,7 @@ const UpdateSchool = () => {
   //rank
   
   //ref
-  const dschool = useRef(null);
+ 
   const category = useRef(null);
   const city  = useRef(null);
   const students  = useRef(null);
@@ -71,7 +96,7 @@ const UpdateSchool = () => {
   
 
   useEffect(() => {
-    dschool.current.value = detail.school
+   
     category.current.value = detail.category
     city.current.value = detail.city
     students.current.value = detail.students
@@ -182,7 +207,7 @@ console.log('curricuar',selectedcurricular)
     event.preventDefault()
     const category = event.target.category.value
     const city = event.target.city.value
-    const school = event.target.school.value
+    
     const students = event.target.students.value
     const location = event.target.location.value
     const grades = event.target.grades.value
@@ -212,6 +237,10 @@ const website = event.target.website.value
 const contact = event.target.contact.value
 const gmail = event.target.gmail.value
 const map = event.target.map.value
+const school = event.target.school.value
+const schoolName = event.target.schoolName.value
+const ranknum = event.target.ranknum.value
+const membership = event.target.membership.value
 
     
     // const task =event.target.task.value
@@ -222,7 +251,7 @@ const map = event.target.map.value
      
 
         category: category ,
-          
+        checkedOptions:checkedOptions,
         city: city,
         school: school,
         students: students,
@@ -261,6 +290,10 @@ const map = event.target.map.value
            contact : contact,
            gmail: gmail,
            map : map,
+           schoolName:schoolName,
+           school:school,
+           ranknum:ranknum,
+           membership:membership,
 
            
            
@@ -297,9 +330,18 @@ const map = event.target.map.value
       
   //submit
   
-     
+  
 
   }
+  const [admin,setAdmin]=useState([])
+  //admin
+useEffect(()=>{
+
+  fetch(`https://d-azure.vercel.app/accountType?email=${user?.email}`)
+  .then(res=>res.json())
+  .then(data=> setAdmin(data))
+
+},[user?.email]) 
     return (
         <div>
           <div>
@@ -347,11 +389,71 @@ const map = event.target.map.value
   {/* // */}
   <div className="form-control">
     <label className="label">
-      <span className="label-text">School name </span>
+      <span className="label-text">School url </span>
     </label>
-    <input ref={dschool} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='school'/>
+    <input  type="text" placeholder="dont use space: townschool" className="input input-bordered input-info w-full max-w-xs" name='school'/>
    </div>
    {/*  */}
+   <div className="form-control">
+    <label className="label">
+      <span className="label-text">School name </span>
+    </label>
+    <input type="text" placeholder="school name"  className="input input-bordered input-info w-full max-w-xs"  name='schoolName'/>
+   </div>
+   {/*  */}
+   {
+  admin.map(s=><h1>
+    {
+      s.accountType=='admin' || s.accountType=='moderator' ?
+      <>
+       <select name="membership" className="mt-2 mb-2 select select-warning w-full max-w-xs">
+  <option disabled selected>School membership</option>
+  <option value='default'>by default</option>
+  <option value='silver'>silver</option>
+  <option value='gold'>Gold</option>
+  
+</select>
+      </>
+      :
+      <>
+       <select name="membership" className="bg-red-400 mt-2 mb-2 select select-warning w-full max-w-xs">
+  <option disabled selected>Principle not allowed to select membership</option>
+  
+  
+</select>
+      </>
+    }
+  </h1>)
+}
+{/*  */}
+   {/*  */}
+   {
+  admin.map(s=><h1>
+    {
+      s.accountType=='admin' || s.accountType=='moderator' ?
+      <>
+     <div className="form-control">
+    <label className="label">
+      <span className="label-text text-green-400 font-bold">Set School Rank </span>
+    </label>
+    <input type="text" placeholder="Give rank : example:2 , example: 7  "  className="input input-bordered input-success w-full max-w-xs"  name='ranknum'/>
+   </div>
+      </>
+      :
+      <>
+       <select name="membership" className="bg-red-400 mt-2 mb-2 select select-warning w-full max-w-xs">
+  <option disabled selected>Principle not allowed to give rank</option>
+  
+  
+</select>
+      </>
+    }
+  </h1>)
+}
+{/*  */}
+
+   {/*  */}
+   
   <div className="form-control">
     <label className="label">
       <span className="label-text">Year established</span>
@@ -446,10 +548,25 @@ const map = event.target.map.value
     <input ref={students} type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs" name='students'/> </div>
 
   {/* // */}
+  <h4>  School Features</h4> 
+  <hr />
+  <div className="checkbox-container">
 
+      {options.map((option) => (
+        <label key={option} className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={checkedOptions.includes(option)}
+            onChange={() => handleCheck(option)}
+          />
+          {option}
+        </label>
+      ))}
+    </div>
+    <hr />
   {/* // features school */}
   
-  <select ref={schoolType} required name='schoolType' className=" select-info  select w-full max-w-xs">
+  <select ref={schoolType}  name='schoolType' className=" select-info  select w-full max-w-xs">
   <option  disabled selected >school features</option>
   
  <option value='Robotics'>  Robotics </option>
@@ -582,7 +699,7 @@ const map = event.target.map.value
 </select>
 {/*  */}
   <select required name='CollegePrepgd' className=" select-info  select w-full max-w-xs">
-  <option  disabled selected >College Prep Grade</option>
+  <option  disabled selected >College Discipline Grade</option>
   
  <option value='A+'> A+ </option>
  <option value='A'>  A </option>
@@ -688,7 +805,7 @@ const map = event.target.map.value
 
 {/* student result */}
   <div className="form-control mt-6">
-    <button className="btn btn-primary">Add this school</button>
+    <button className="btn btn-primary">Update this school</button>
    
      </div>
 </form>

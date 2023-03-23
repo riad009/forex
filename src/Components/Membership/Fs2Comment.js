@@ -3,8 +3,40 @@ import { AuthContext } from '../Auth/AuthProvider';
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { MdOutlineDateRange } from 'react-icons/md';
+import { MdDeleteForever } from 'react-icons/md';
+import { toast } from 'react-toastify';
 const Fs2howComment = ({numbers}) => {
- 
+  const deletecomment=()=>{
+    
+    var answer = window.confirm("Delete comment ?");
+   if(answer){
+
+
+    fetch(`https://d-azure.vercel.app/deletecomment/${numbers._id}`,{
+    
+    
+    method: 'DELETE'
+    
+    })
+    .then(res=>res.json)
+    .then(er=>console.error(er))
+  
+   
+
+    toast.error(`comment ${numbers.comment} deleted`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+        
+   }
+    
+    }
  
 
   const [storedNumbers, setStoredNumbers] = useState([]);
@@ -37,9 +69,11 @@ console.log('rating',numbers.rating)
   {/* rating  start*/}
   
     </h2>
+   
     
 
     <p className='text-justify text-left '> {numbers.comment}</p>
+    <h2 onClick={deletecomment} className='text-red-400 text-2xl'>  <MdDeleteForever/>  </h2>
     <div className="card-actions justify-end">
       <div className="">
         
@@ -74,9 +108,9 @@ console.log('rating',numbers.rating)
           
          
           
-          <h1 className='text-red-400'> </h1>
+         
           
-
+         
 
         </div>
     );

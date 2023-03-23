@@ -15,6 +15,7 @@ const UpdateArticle = () => {
     //new code  set pre text 
   const textAreaRefDetail = useRef(null);
   const textAreaRefTitle = useRef(null);
+  const textAreaRefUrl = useRef(null);
 
   useEffect(() => {
     textAreaRefDetail.current.value = detail.details
@@ -22,6 +23,10 @@ const UpdateArticle = () => {
   }, []); 
   useEffect(() => {
     textAreaRefTitle.current.value = detail.title
+  
+  }, []); 
+  useEffect(() => {
+    textAreaRefUrl.current.value = detail.url
   
   }, []); 
    //admin
@@ -41,6 +46,7 @@ useEffect(()=>{
     event.preventDefault()
     const article =event.target.article.value
     const title =event.target.title.value
+    const url =event.target.url.value
     
 console.log("edit call",article)
 
@@ -56,7 +62,8 @@ console.log("edit call",article)
      
      
       details: article,
-      title: title
+      title: title,
+      url: url,
     
         
           
@@ -119,9 +126,9 @@ console.log("edit call",article)
         <div className="modal">
           <form onSubmit={handleEdit} className="modal-box relative">
             <label htmlFor="my-modal-10" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-            <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-            <input  ref={textAreaRefTitle}     type="text" name='title' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
+             <input  ref={textAreaRefTitle}     type="text" name='title' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
+           <br /> <br />
+             <input  ref={textAreaRefUrl}     type="text" name='url' placeholder="Type here" className="input input-bordered input-accent w-full max-w-xs" />
            <br /> <br />
           
             <textarea ref={textAreaRefDetail}   onChange className="textarea textarea-accent w-full" name='article' placeholder="Article detail" ></textarea>

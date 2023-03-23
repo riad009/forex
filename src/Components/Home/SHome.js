@@ -7,16 +7,33 @@ import banner from '../../assets/banner-11.json'
 import line from '../../assets/line.json'
 import wave from '../../assets/banner-12.json'
 import Lottie from "lottie-react"
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { RiH1 } from 'react-icons/ri';
 
 const SHome = () => {
+  const [ads,setads]=useState([]);
+ 
+
+  useEffect(()=>{
+    fetch('https://d-azure.vercel.app/gethomeads')
+    
+    .then(res=>res.json())
+    .then(data=>setads(data))
+          
+    
+        },
+        
+        [])
     return (
-        <div className='hand  container grid lg:grid-cols-2 grid-cols-1 '>
+        <div className='hand  grid divide grid-cols-1 '>
 
 
-  <div className=' ' >
+  <div className='' >
      {/* <button className='btn btnColor'>1000 + school </button>            */}
-       <h1  className='text-justify mx-8'>Find the best school for your child and interact with school social media. bsk is the best website in Pakistan to know where the school is.
+       {/* <h1  className='text-justify mx-8'>Find the best school for your child and interact with school social media. bsk is the best website in Pakistan to know where the school is.
    <span className='color-[#6a7199] text-xs'> <br /> Your child will learn effectively on the right platform where our moderators will target their curriculum staff across the online platform</span> </h1>
+   */}
    <div className='justify-self-center mt-4 w-96'><Lottie animationData={line} /></div>
  
   <div className='flex'>
@@ -26,41 +43,24 @@ const SHome = () => {
  
   </div>
   
-   
    </div>
   {/*  */}
-   <div className='my-12'>
-   <div className="carousel w-full shadow-xl rounded ">
-  <div id="slide1" className="carousel-item relative w-full">
-    <img src="https://media.freewebstock.com/school-admission-banner-template.jpeg" className="w-full" />
-    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
-      <a href="#slide4" className="btn btn-circle">❮</a> 
-      <a href="#slide2" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide2" className="carousel-item relative w-full">
-    <img src="https://graphicsfamily.com/wp-content/uploads/edd/2021/09/Educational-School-Admission-Banner-Template.jpg" className="w-full" />
-    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
-      <a href="#slide1" className="btn btn-circle">❮</a> 
-      <a href="#slide3" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide3" className="carousel-item relative w-full">
-    <img src="https://media.freewebstock.com/school-admission-banner-template.jpeg" className="w-full" />
-    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
-      <a href="#slide2" className="btn btn-circle">❮</a> 
-      <a href="#slide4" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide4" className="carousel-item relative w-full">
-    <img src="https://img.freepik.com/free-vector/realistic-back-school-background_52683-87650.jpg?w=2000" className="w-full" />
-    <div className="absolute flex justify-between transform  left-5 right-5 top-1/2">
-      <a href="#slide3" className="btn btn-circle">❮</a> 
-      <a href="#slide1" className="btn btn-circle">❯</a>
-    </div>
+  <div style={{opacity: "0.8"}} class=" bg-white  rounded-lg overflow-hidden max-w-4xl mx-auto">
+  <div class="px-6 py-8">
+    <h1 class="text-4xl font-bold mb-4 text-gray-800">
+      Find the Best Schools in Pakistan:
+      Your Guide to Quality Education
+    </h1>
+    <p class="text-gray-700 text-lg mb-8 text-justify italic">
+      Are you looking for the best schools in Pakistan to give your child the education they deserve? Look no further than our comprehensive guide to quality education. We've done the research for you and compiled a list of top-rated schools across the country, complete with information on their academic programs, extracurricular activities, and more. Whether you're in Islamabad, Lahore, Karachi, or beyond, we can help you find the perfect school for your child's needs.
+    </p>
+    
+
+    
   </div>
 </div>
-   </div>
+
+
    
         </div>
     );

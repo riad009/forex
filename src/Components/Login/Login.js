@@ -6,7 +6,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import Lottie from "lottie-react"
 import find from '../../assets/login-4.json'
 import { FcGoogle } from 'react-icons/fc';
-
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,8 +24,58 @@ const Login = () => {
   const location=useLocation();
   const from=location.state?.from?.pathname || '/';
   const {login}=useContext(AuthContext)
-  
+  const {reset}=useContext(AuthContext)
+  const [email, setEmail] = useState('');
 
+ 
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  
+//
+const handlereset=event=>{
+  event.preventDefault();
+ 
+  var answer = window.confirm("reset password?");
+  if(answer){
+  
+  email? 
+  <>
+   {
+    reset(email)
+   
+   }
+  </>
+  :
+  <>{
+     alert('Enter valid email address')
+  }</>
+  email ?
+  <>
+  {
+    alert('Please check your email address for reset password')
+  }
+  </>
+  :
+  <>
+  {
+   
+  }
+  </>
+  email ?
+  <>{
+    toast(`We have seen a reset password please check your email ${email}`)
+  }</>
+  :
+  <></>
+  
+  
+  }
+  // const email= event.target.email.value;
+ 
+ 
+}
+//
   const navigate=useNavigate()
 
 
@@ -117,7 +168,7 @@ const Login = () => {
     <label className="label">
       <span className="label-text">Email</span>
     </label>
-    <input type="text" placeholder="email" name='email' className="input input-bordered" />
+    <input type="text" placeholder="email" name='email'value={email} onChange={handleEmailChange} className="input input-bordered" />
   </div>
   {/* // */}
   
@@ -126,9 +177,12 @@ const Login = () => {
       <span className="label-text">Password</span>
     </label>
     <input type="password" placeholder="password" name='password' className="input input-bordered" />
+    
     <label className="label">
       <a href="#" className="label-text-alt link link-hover"> <Link to='/Registration'>Dont have account? <p className='bg-gray-400 text-white '>Registration</p></Link></a>
+   
     </label>
+    
   </div>
   {loading ? (<button disabled type="button" class="mt-4 py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
     <svg role="status" class="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,6 +193,10 @@ const Login = () => {
 </button>)  :'' } 
   <div className="form-control mt-6">
     <button className="btn btn-primary">Login</button>
+    <label className="label">
+      
+      <button onClick={handlereset} className=' hover:underline text-red-400 font-semibold'>Forget password? </button>
+    </label>
      </div>
 </form>
 <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info mb-3 m-4  mt-3"> <p className='text-2xl mr-1'><FcGoogle/></p>Google Sign in</button>

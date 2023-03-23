@@ -53,23 +53,20 @@ const date = new Date();
         const title = event.target.title.value
         const details = event.target.details.value
         const img = event.target.img.value
+        const url = event.target.url.value
              
       
 
-          const submit={  
-         
-
-          //new     
-          title: title ,
+        const submit = {  
+          title: title,
           details: details,
-          img: img,
-          name : name,
-          date:date,
-          combine:combine
+          img: img || 'https://www.collinsdictionary.com/images/full/school_309241295.jpg', // set default image if img is empty
+          name: name,
+          date: date,
+          combine: combine,
+          url: url,
+        };
         
-            
-              
-          }
       
         
         fetch('https://d-azure.vercel.app/addarticle',{
@@ -129,6 +126,13 @@ const date = new Date();
       <span className="label-text">Title</span>
     </label>
     <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='title'/> </div>
+  {/* // */}
+  {/* // */}
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text">Create Article Link</span>
+    </label>
+    <input  type="text" required placeholder="Article Link Dont use space "  className="input input-bordered input-info w-full max-w-xs" name='url'/> </div>
   {/* // */}
   
   <div className="form-control">

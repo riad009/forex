@@ -48,9 +48,9 @@ useEffect(()=>{
 },[user?.email])
 
 //all seller
-if(loading){
-  return <div><h2>loading</h2></div>
-}
+// if(loading){
+//   return <div><h2>loading</h2></div>
+// }
 
   const handleLogout=(auth)=>{
 
@@ -348,6 +348,7 @@ s.accountType=="admin"?
 <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminarticle'}> Article post</Link></a>
     <a className='btn btn-outline btn-success btn-sm m-2'> <Link to={'/darticle'}> Edit / Delete Article</Link></a>
     <a className='btn btn-outline btn-info btn-sm m-2'> <Link to={'/adminschool'}> Add school</Link></a>
+    <a className='btn btn-outline btn-primary btn-sm m-2'> <Link to={'/GiveAds'}> Advertiesment Control panel</Link></a>
 
 
 
