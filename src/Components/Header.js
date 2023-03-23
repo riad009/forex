@@ -88,6 +88,7 @@ user?.email ?
 <> 
 <Link to={'/'}> <li>  <button><a className='btn btn-outline btn-info'>Home</a></button> </li></Link>
 <Link to={'/school'}> <li>  <button><a className='btn btn-outline btn-info'>Find School</a></button> </li></Link>
+<Link to={'/article'}> <li>  <button><a className='btn btn-outline btn-info'>Article</a></button> </li></Link>
 
        
 
@@ -96,6 +97,7 @@ user?.email ?
 <>
 <Link to={'/'}> <li>  <button><a className='btn btn-outline btn-info'><AiOutlineHome/>  Home</a></button> </li></Link>
 <Link to={'/school'}> <li>  <button><a className='btn btn-outline btn-info'>Find School</a></button> </li></Link>
+<Link to={'/article'}> <li>  <button><a className='btn btn-outline btn-info'>Article</a></button> </li></Link>
 <li>  <button> <a onClick={handleAddYourSchool} className='btn btn-outline btn-info'>Add Your School</a> </button> </li>
 <Link to={'/login'}> <li>  <button><a className='btn btn-outline btn-info'> Login </a></button> </li></Link>
     
@@ -142,6 +144,7 @@ user?.email ?
 <> 
 <Link to={'/'}> <li><a className='text-white'>Home</a></li></Link>
      <Link to={'/school'}> <li><a className='text-white'>Find School</a></li></Link>
+     <Link to={'/article'}> <li><a className='text-white'>Article</a></li></Link>
      
      
 
@@ -153,6 +156,7 @@ user?.email ?
 <>
 <Link to={'/'}> <li><a className='text-white'><AiOutlineHome/> Home</a></li></Link>
 <Link to={'/school'}> <li><a className='text-white'><RiFindReplaceLine/>  Find School</a></li></Link>
+<Link to={'/article'}> <li><a className='text-white'><RiFindReplaceLine/>  Article</a></li></Link>
  <li onClick={handleAddYourSchool}><a className='text-white'>Add Your School</a></li>
  <Link to={'/login'}> <li><a className='text-white'>Login</a></li></Link>
     

@@ -1,16 +1,17 @@
+import src from 'daisyui';
 import React, {  useContext, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Ads from '../Ads/Ads';
 import { AuthContext } from '../Auth/AuthProvider';
+import AlArticle from './AlArticle';
 import Article from './Article';
 import ArticleComment from './ArticleComment';
-
-
+import './MoreArticle.css'
+import { HiOutlineNewspaper } from 'react-icons/hi';
 const MoreArticle = () => {
   
- 
  
 
     const article = useLoaderData()
@@ -88,12 +89,73 @@ console.log("edit call",article)
   function handleClick() {
     topRef.current.scrollIntoView({ behavior: 'smooth' });
   }
-    return (
 
-      <section ref={topRef} className='article-more'>
-        <div className='m-3'>
+  //search article
+  
+  const [inputValue, setInputValue] = useState(''); //get name from input
+  const [schoolname, setTowsalaryRangeSchool] = useState([])
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+  console.log(inputValue)
+
+  // get name from db
+  useEffect(() => {
+
+    fetch(`https://d-azure.vercel.app/findarticle/${inputValue}`)
+     .then(res => res.json())
+    .then(data => {
+      setTowsalaryRangeSchool(data)
+   
+    
+    
+    })
+    
+    }, [inputValue])
+  //search article
+  console.log('towsalaryRangeSchool',schoolname)
+    return (
+<div>
+  
+<section  ref={topRef} className=''>
+   {/* search */}
+   <div className='flex justify-end m-4'>
+    <section>
+    <input type='text' placeholder='Search Article..' className='input input-info w-full max-w-xs' value={inputValue} onChange={handleInputChange} />
+   {/*  */}
+   {inputValue.length ?   
+    <div  style={{position: 'absolute', top: '5', left: '10',  backgroundColor: 'white'}}
+      className="border-1 shadow-xl text-left p-2    text-black text-sm justify-left text-white    m-2"
+      
+    >
+      {
+        schoolname.slice(0, 4).map((sc) =>
+        
+          <h2 className='mt-2 font-bold hover:underline hover:bg-blue-200'>
+             
+             <a className='flex flex-between ' href={`/recentarticled/${sc.url}`}><HiOutlineNewspaper/> {sc.title}</a>
+             
+             <hr />
+              </h2>
+        
+           
+        )
+      }
+    </div>
+    :
+    <></>
+  }
+    </section>
+    </div>
+  {/* search end */}
+
+
+        <div  className='mx-3'>
   <h1 className='text-left font-bold text-2xl'>{article.title}</h1>
 <div > <p className='flex italic mt-3'>Author: {article.name}  <span className='mr-4'></span>  <p className='text-slate-500 font-italic'>Updated: {month} {date}, {year}</p>   </p></div>
+  
+ 
+  
   <div className="w-100 h-auto mt-4 " >
            {
                                      article.img ?
@@ -111,40 +173,17 @@ console.log("edit call",article)
    <ArticleComment d={article} ></ArticleComment>
 
  </div>
- <Article></Article>
- <button onClick={handleClick}>Scroll to Top</button>
-</div>
-
-<div>
-  <Ads></Ads>
-</div>
-      </section>
-//         <div className='m-4 hand'>
-//             {/* <h1 className="text-5xl font-bold mt-6 text-blue-400 bg-pink-100">Article Details</h1>
-//   */}
-// <div className="card lg:card-side bg-base-100 shadow-xl">
-//   <figure><img src={detail.img} alt="Album"/></figure>
-//   <div className="card-body">
-//     <h2 className="card-title">{detail.title}</h2>
-//     <p className='text-left' >{detail.details}</p>
-//     <div className="card-actions justify-end">
-      
-//      <Link to={'/'} > <button className="btn btn-primary">Back</button></Link>
-   
 
  
-   
-   
-//     </div>
-//   </div>
-// </div>
+ {/* <button onClick={handleClick}>Scroll to Top</button> */}
+</div>
 
-// {/* article comment */}
-// <div>
-//    <ArticleComment d={detail} ></ArticleComment>
 
-// </div>
-//         </div>
+
+      </section>
+      <Article></Article>
+      <AlArticle></AlArticle>
+</div>
     );
 };
 

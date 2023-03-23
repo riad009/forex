@@ -4,9 +4,10 @@ import find from '../../assets/wave-6.json'
 import Lottie from "lottie-react"
 const ShowRankSchool = ({d}) => {
     return (
-        <div>
+      // style={{opacity: "0.8"}}
+        <div className='hand'>
         
-            <div className="card  w-96 bg-base-100 ">
+            <div style={{opacity: "0.9"}}  className="card  w-96 glass ">
                 
     
                  <figure><img src="https://img.freepik.com/free-vector/large-school-building-scene_1308-32058.jpg?w=2000" alt="Shoes" /></figure>

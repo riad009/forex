@@ -26,7 +26,7 @@ const NewArticleShow = ({article}) => {
            
          </Link> */}
                
-      <Link to={`/recentarticled/${article.url}`} >
+      <a href={`/recentarticled/${article.url}`} >
       {/* <p className='hover:underline hover:text-blue-400 hidden sm:block md:block' onClick={() => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollStep = -scrollTop / (500 / 15); // 500ms animation time
@@ -44,7 +44,7 @@ const NewArticleShow = ({article}) => {
   {article.details.slice(0,240)}
 </p>
 
-         </Link>
+         </a>
          
            </div>
            

@@ -167,8 +167,10 @@ console.log('curricuar',selectedcurricular)
       
         })
       
+       setTimeout(()=>{
+    window.location.reload(false);   
+    },2000)
         
-          
       //submit
       
           
@@ -325,7 +327,7 @@ console.log('curricuar',selectedcurricular)
         })
       
         
-          
+    console.log(submit)      
       //submit
       
           
@@ -348,9 +350,23 @@ useEffect(()=>{
 
 },[user?.email])
   //new
+  const cities = [];
+  const [categories, setCategories] = useState(cities);
+
+   
+
+  useEffect(()=>{
+      fetch('https://d-azure.vercel.app/townschool')
+      .then(res=>res.json())
+      .then(data=>setCategories(data))
+      
+      
+          },
+          [])
+  // const cities = ['Islamabad', 'Karachi', 'Lahore', 'Faisalabad', 'Rawalpindi', 'Multan', 'Gujranwala', 'Peshawar', 'Quetta', 'Hyderabad', 'Sargodha', 'Bahawalpur'];
 
     return (
-        <div className='grid lg:grid-cols-2 grid grid-cols-1'>
+        <div className='divide  grid grid-cols-1'>
              {/* <h1 className="text-5xl font-bold mt-6 text-blue-400 ">Add School</h1> */}
  
  {/* section 1 -----------------------------------*/}
@@ -386,7 +402,9 @@ useEffect(()=>{
     <label className="label">
       <span className="label-text">City Name</span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='category'/> </div>
+    <input type="text" placeholder="Type here" required className="input  input-bordered input-secondary w-full max-w-xs" name='category'/> 
+    
+    </div>
 
   {/* // */}
   
@@ -441,7 +459,20 @@ useEffect(()=>{
     <label className="label">
       <span className="label-text">City name </span>
     </label>
-    <input type="text" placeholder="Type here" required className="input input-bordered input-info w-full max-w-xs" name='category'/> </div>
+    {/*  City  */}
+
+    <select name='category' className="select select-secondary w-full max-w-xs">
+  <option disabled selected>Pick city name</option>
+  {categories.map(city => (
+    <option value={city.category}>{city.category}</option>
+  ))}
+</select>
+
+    {/*  City  */}
+    {/* <input type="text" placeholder="City name" required className="input input-bordered input-info w-full max-w-xs" name='category'/> 
+     */}
+    
+    </div>
 
   {/* // */}
 

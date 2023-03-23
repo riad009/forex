@@ -244,9 +244,9 @@ Towschoolfeatures.map(sc=>
   />
   
   {schoolname.length ?   
-    <div 
+    <div style={{position: 'absolute', top: '5', left: '10',backgroundColor:'white' }}
       className="border-1 shadow-xl    text-black text-sm justify-left text-white   flex flex-col p-2"
-      style={{ backgroundColor: 'white' }}
+      
     >
       {
         searchSchool.slice(0, 4).map((sc) =>
@@ -276,12 +276,12 @@ Towschoolfeatures.map(sc=>
  
 
 
- <div>
+ <div >
 
 <input onChange={(event) => settown(event.target.value)} type="text" placeholder="Search by town " className="input input-bordered w-48 max-w-xs" />
 
   {
- town.length ?   <div className=" shadow-xl   bg-primary-content text-black text-sm justify-left text-white  flex flex-col">
+ town.length ?   <div style={{position: 'absolute', top: '5', left: '10', backgroundColor:'white' }} className="border-1 shadow-xl    text-black text-sm justify-left text-white   flex flex-col p-2">
    
 {
  towtown.slice(0, 4).map((sc) =>

@@ -77,7 +77,7 @@ const Article = () => {
 </div>
 
 <div>
-  <Ads></Ads>
+  {/* <Ads></Ads> */}
 </div>
 
 </div>

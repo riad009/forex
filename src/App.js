@@ -31,6 +31,7 @@ import CityAds from './Components/advertisment/CityAds';
 import Advertisment from './Components/advertisment/Advertisment';
 import TownAds from './Components/advertisment/TownAds';
 import GiveAds from './Components/Admin/GiveAds';
+import AlArticle from './Components/article/AlArticle';
 
 
 
@@ -150,6 +151,10 @@ function App() {
           {
             path: '/giveads',
             element: <AdminGiveAds></AdminGiveAds>
+          },
+          {
+            path: '/article',
+            element: <AlArticle></AlArticle>
           },
           {
             path: '/cityid/:id',
