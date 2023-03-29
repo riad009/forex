@@ -99,8 +99,8 @@ const Areacard = ({name}) => {
    <h2 className="card-title font-bold text-3xl text-indigo-800">  {name.category}</h2>
    
    
-    <div className='justify-self-center w-24'><Lottie animationData={city}/></div>
-    
+    {/* <div className='justify-self-center w-24'><Lottie animationData={city}/></div>
+     */}
    </div>
    
     <div className="card-actions justify-start">

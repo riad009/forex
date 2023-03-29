@@ -116,6 +116,7 @@ console.log('curricuar',selectedcurricular)
     
 
         const category = event.target.category.value
+        const town = event.target.town.value
       
         const logo = event.target.logo.value
        
@@ -127,6 +128,7 @@ console.log('curricuar',selectedcurricular)
 
           //new     
           category: category ,
+          town: town ,
           
           logo: logo,
           
@@ -134,7 +136,7 @@ console.log('curricuar',selectedcurricular)
             
               
           }
-      
+      console.log(submit)
         
         fetch('https://d-azure.vercel.app/addTown',{
           
@@ -284,7 +286,9 @@ console.log('curricuar',selectedcurricular)
             
             schoolName: schoolName,
             membership: membership,
-
+            //add town list
+            //3/20/23
+           
             
           
           
@@ -351,18 +355,42 @@ useEffect(()=>{
 },[user?.email])
   //new
   const cities = [];
+  
   const [categories, setCategories] = useState(cities);
+
+ 
+  
 
    
 
   useEffect(()=>{
-      fetch('https://d-azure.vercel.app/townschool')
+      fetch('https://d-azure.vercel.app/getcitylist')
       .then(res=>res.json())
       .then(data=>setCategories(data))
       
       
           },
           [])
+          //
+          const towns = [];
+          const [town, setTown] = useState(towns);
+          
+          useEffect(()=>{
+            fetch('https://d-azure.vercel.app/gettownlist')
+            .then(res=>res.json())
+            .then(data=>setTown(data))
+            
+            
+                },
+                [])
+          
+          
+         
+          console.log('ccccccccccc',categories)
+          console.log('ccccccccccc2222',town)
+          
+        
+
   // const cities = ['Islamabad', 'Karachi', 'Lahore', 'Faisalabad', 'Rawalpindi', 'Multan', 'Gujranwala', 'Peshawar', 'Quetta', 'Hyderabad', 'Sargodha', 'Bahawalpur'];
 
     return (
@@ -402,7 +430,18 @@ useEffect(()=>{
     <label className="label">
       <span className="label-text">City Name</span>
     </label>
-    <input type="text" placeholder="Type here" required className="input  input-bordered input-secondary w-full max-w-xs" name='category'/> 
+    <input type="text" placeholder="Type here"  className="input  input-bordered input-secondary w-full max-w-xs" name='category'/> 
+    
+    </div>
+
+  {/* // */}
+  {/* // */}
+  <div className="form-control">
+  
+    <label className="label">
+      <span className="label-text">Town Name</span>
+    </label>
+    <input type="text" placeholder="Type here"  className="input  input-bordered input-primary w-full max-w-xs" name='town'/> 
     
     </div>
 
@@ -416,7 +455,7 @@ useEffect(()=>{
   </div>
  
   <div className="form-control mt-6">
-    <button className="btn btn-primary">Add this City</button>
+    <button className="btn btn-primary">Add </button>
    
      </div>
 
@@ -463,9 +502,33 @@ useEffect(()=>{
 
     <select name='category' className="select select-secondary w-full max-w-xs">
   <option disabled selected>Pick city name</option>
-  {categories.map(city => (
-    <option value={city.category}>{city.category}</option>
-  ))}
+  {categories?.filter(city => city.category).sort((a, b) => a.category.localeCompare(b.category)).map(city => (
+  <option value={city.category}>{city.category}</option>
+))}
+
+
+</select>
+
+    {/*  City  */}
+    {/* <input type="text" placeholder="City name" required className="input input-bordered input-info w-full max-w-xs" name='category'/> 
+     */}
+    
+    </div>
+
+  {/* // */}
+<div className="form-control">
+    <label className="label">
+      <span className="label-text">town name </span>
+    </label>
+    {/*  City  */}
+
+    <select name='city' className="select select-primary w-full max-w-xs">
+  <option disabled selected>Pick town name</option>
+
+  {town?.filter(city => city.town).sort((a, b) => a.town.localeCompare(b.town)).map(city => (
+  <option value={city.town}>{city.town}</option>
+))}
+
 </select>
 
     {/*  City  */}
@@ -477,11 +540,11 @@ useEffect(()=>{
   {/* // */}
 
   {/* // */}
-  <div className="form-control ">
+  {/* <div className="form-control ">
     <label className="label">
       <span className="label-text">Town name on this city </span>
     </label>
-    <input type="text" placeholder="add a town on this city" required className="input input-bordered input-info w-full max-w-xs" name='city'/> </div>
+    <input type="text" placeholder="add a town on this city" required className="input input-bordered input-info w-full max-w-xs" name='city'/> </div> */}
 
   {/* // */}
 

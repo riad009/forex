@@ -135,6 +135,21 @@ const AdminGiveAds = () => {
             
             console.log(submit);
           };
+
+
+          //select town
+          const towns = [];
+          const [townb, setTown] = useState(towns);
+          
+          useEffect(()=>{
+            fetch('https://d-azure.vercel.app/gettownlist')
+            .then(res=>res.json())
+            .then(data=>setTown(data))
+            
+            
+                },
+                [])
+
     return (
 <section className=' grid lg:grid-cols-3 sm:grid-cols-1'>
        <div className='m-3 border-2 bg-pink-200 text-2xl'  >
@@ -221,12 +236,34 @@ const AdminGiveAds = () => {
    <h2 className='font-bold bg-green-400 text-2xl '>Town ads</h2>
    {/* <Link to={'/townads'} >town ads</Link> */}
   <form onSubmit={handlecreatetown} className='mt-2' >
-  <input type="text" placeholder="town name (same name)" name='town' className="input input-bordered input-primary w-full max-w-xs" />
-  <button className='btn btn-outline btn-info m-2'>Creat new town</button>
-    </form>         
+  <div className="form-control">
+    <label className="label">
+      <span className="label-text">town name </span>
+    </label>
+    {/*  City  */}
+
+    <select name='town' className="select select-primary w-full max-w-xs">
+  <option disabled selected>Pick town name</option>
+
+  {townb?.filter(city => city.town).sort((a, b) => a.town.localeCompare(b.town)).map(city => (
+  <option value={city.town}>{city.town}</option>
+))}
+
+</select>
+
+    {/*  City  */}
+    {/* <input type="text" placeholder="City name" required className="input input-bordered input-info w-full max-w-xs" name='category'/> 
+     */}
+    
+    </div>
   
+  <button className='btn btn-outline btn-info m-2'>Creat new town for ads</button>
+    
+    
+    </form>          
+
   <h3>
-  Please note: First time you need to create town name, where you want to show ads for all school existing on that town.  Remember to name the town where it already exists and created from admin pnael 'add school'.  You need to define the city name here
+  Please note: First time you need to create town name, where you want to show ads for all school existing on that town.
     </h3>  {
             town?.map(town=> <h1 className='text-2xl hover:underline'>
                 <Link to={`/townid/${town._id}`} >
