@@ -144,7 +144,7 @@ event.preventDefault()
                 }); 
             },1500)
      
-        navigate('/schoolCompareShow/cmp')
+        navigate('/schoolCompareShow/amirjan')
   // dont delete this id ( it will redirect to the data)
     }
   

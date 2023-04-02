@@ -436,7 +436,7 @@ red
 
 <div>
 
-<div className='text-2xl text-white font-bold flex mb-2'>Write a review <span className='mx-2 text-blue-400'>{d.school}</span> 
+<div className='text-2xl text-white font-bold flex mb-2'>Write a review  
    
              </div>
 
