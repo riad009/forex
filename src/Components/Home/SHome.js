@@ -26,14 +26,12 @@ const SHome = () => {
         
         [])
     return (
-        <div className='hand  grid divide grid-cols-1 '>
+        <div className='hand   '>
 
 
-  <div className='' >
-     {/* <button className='btn btnColor'>1000 + school </button>            */}
-       {/* <h1  className='text-justify mx-8'>Find the best school for your child and interact with school social media. bsk is the best website in Pakistan to know where the school is.
-   <span className='color-[#6a7199] text-xs'> <br /> Your child will learn effectively on the right platform where our moderators will target their curriculum staff across the online platform</span> </h1>
-   */}
+  {/* <div className='' >
+    // grid divide grid-cols-1 --class
+
    <div className='justify-self-center mt-4 '><Lottie animationData={line} /></div>
  
   <div className='flex'>
@@ -43,8 +41,11 @@ const SHome = () => {
  
   </div>
   
-   </div>
-  {/*  */}
+   </div> */}
+
+
+
+  
   <div style={{opacity: "0.8"}} class=" bg-white  rounded-lg overflow-hidden max-w-4xl mx-auto">
   <div class="px-6 py-8">
     <h1 class="text-4xl font-bold mb-4 text-gray-800">

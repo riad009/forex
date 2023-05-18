@@ -7,10 +7,12 @@ import { AuthContext } from '../Auth/AuthProvider';
 
 
 const Areacard = ({name}) => {
-
+  const [loader,setloader]=useState(false)
+ 
  
   const {user,loading}=useContext(AuthContext)
   const [admin,setAdmin]=useState([])
+ 
 
   useEffect(()=>{
 
@@ -62,26 +64,59 @@ const Areacard = ({name}) => {
     }
     const [areacategories,setareaCategories]=useState([]);
     useEffect(()=>{
+    
         fetch('https://d-azure.vercel.app/areaschool')
         .then(res=>res.json())
         .then(data=>setareaCategories(data))
+        setloader(false)
         
-       
             },
             [])
             const un= "city"
             const uniq= [...new Map(areacategories.map(cat=> [cat[un],cat]  )).values()]
-
-            
-
            
+          
+
+        // 
+
+      
+
+useEffect(() => {
+  setloader(true);
+
+  fetch('https://d-azure.vercel.app/areaschool')
+    .then(res => res.json())
+    .then(data => {
+      setareaCategories(data);
+      setTimeout(() => {
+        setloader(false);
+      }, 2000); // Set timeout to 2 seconds (2000 milliseconds)
+    });
+}, []);
+
+        // 
+            
+          
+   
     return (
-     <div  className='hand'>
+     <div  className=' my-6  h-screen overflow-auto  '>
 
-<div >
+{
+    loader ?
+    <><div class="center">
+    <div class="spinner"></div>
+  </div>
+  
+
+  </>
+    :
+    <>
+    <div >
 
 
-<div className="card w-70 glass">
+<div className="card w-70  ">
+
+  
   
 {
                                      name.logo ?
@@ -96,7 +131,7 @@ const Areacard = ({name}) => {
   <div className="card-body ">
  
    <div className='flex'>
-   <h2 className="card-title font-bold text-3xl text-indigo-800">  {name.category}</h2>
+   <h2 className="card-title font-bold text-4xl text-indigo-800">  {name.category}</h2>
    
    
     {/* <div className='justify-self-center w-24'><Lottie animationData={city}/></div>
@@ -163,6 +198,11 @@ s.accountType=="admin" || s.accountType=="moderator" ?
 
             
         </div>
+    </>
+  }
+
+
+
         <ToastContainer/>
        
      </div>

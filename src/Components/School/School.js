@@ -40,80 +40,27 @@ const School = ({d}) => {
                     // const un= "city"
                     // const uniq= [...new Map(categories.map(cat=> [cat[un],cat]  )).values()]
         
-        
+       
     return (
-      <div >
-  {/* <FeaturesSchool></FeaturesSchool> */}
- 
-<section className='hand'>
-{/* part */}
-{/* {
-  d &&
-  <> ss {d.school}
-  </>
-
-
-} */}
-<div className='grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-3  gap-6 glass   '>
+      <div className=" ">
     
-
-
-
-    {
-    
-        categories.map(name=>  <Areacard name={name}  ></Areacard>)
-    }
-
-    
-    {
-        categories.map(title=>  <h1 key={title._id}> 
-       
-    
-       {/* area start */}
-          
-          
-        
-    
-    
-    
-    
-    
-     
-      
-                
-       {/* // down card */}
-        {/* <div className="card card-compact w-96 bg-base-100 shadow-xl mt-20">
-      <figure><img className='h-40' src={title.logo} alt={title.category} /></figure>
-      <div className="card-body">
-      
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-           
-          <button className="btn btn-primary"><Link to={`/title/${title._id}`} >Details</Link></button>
-        </div>
-      </div>
-    </div> */}
-    
-       {/* // card end */}
-      
-    
-    
-    
-    
-    
-        </h1>  )
-       
-    
-    }  
-    
-    
-          </div>
-        <div className=''>
-  {/* <Ads></Ads> pt-12 ml-2*/}
+      {/* <FeaturesSchool></FeaturesSchool> */}
+      <section className="hand">
+        {/* part */}
+        {/* {
+          d &&
+          <> ss {d.school}
+          </>
+        } */}
+        <div className=" grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-3 gap-6 glass">
+          {
+            categories.map(name => <Areacard name={name}></Areacard>)
+          }
         </div>
       </section>
+    </div>
+    
 
-      </div>
     );
 };
 
