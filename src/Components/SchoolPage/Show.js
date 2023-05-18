@@ -264,10 +264,13 @@ useEffect(()=>{
 
 {
   d.img ?
-    <> <figure><img className='h-60 ' src={d.img} alt="picture" /></figure>
+    <> <figure><img src="https://img.freepik.com/free-vector/large-school-building-scene_1308-32058.jpg?w=2000" alt="best school in pakistan school" />
+    {/* moderator have made a mistake while inserting the picture of the school thats why i have make it hardcoded pic to show school */}
+      {/* <img className='h-60 ' src={d.img} alt="picture" /> */}
+      </figure>
     </>
     :
-    <><figure><img src="https://img.freepik.com/free-vector/large-school-building-scene_1308-32058.jpg?w=2000" alt="Shoes" /></figure></>
+    <><figure><img src="https://img.freepik.com/free-vector/large-school-building-scene_1308-32058.jpg?w=2000" alt="best school in pakistan school" /></figure></>
 
 
 }
@@ -519,7 +522,7 @@ useEffect(()=>{
   :
   <>
   <div className='colorLightBlue  p-4 shadow-xl text-left flex text-xl text-white '>
-<h2 className='mr-12'>{d.school} School</h2>
+  <h2 className='mr-12'>{d.schoolName.slice(0,20)}...</h2>
 <h2 className='mr-12'>{d.students} Students</h2>
 <h2 className='mr-12'>Grades {d.grades}</h2>
 

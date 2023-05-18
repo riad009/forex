@@ -13,7 +13,7 @@
     "apexcharts": "^3.36.3",
     "chart.js": "^4.2.0",
     "daisyui": "^2.46.0",
-    "firebase": "^9.15.0",
+    "firebase": "^9.19.1",
     "lottie-react": "^2.3.1",
     "react": "^18.2.0",
     "react-addressbar": "^0.1.4",

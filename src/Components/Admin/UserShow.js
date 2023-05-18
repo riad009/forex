@@ -46,9 +46,9 @@ const UserShow = ({d,i}) => {
     
       
 
-        setTimeout(()=>{
-            window.location.reload(false);   
-            },1500)
+        // setTimeout(()=>{
+        //     window.location.reload(false);   
+        //     },1500)
            
       
         })
@@ -102,9 +102,9 @@ const UserShow = ({d,i}) => {
        
       
 
-        setTimeout(()=>{
-            window.location.reload(false);   
-            },1500)
+        // setTimeout(()=>{
+        //     window.location.reload(false);   
+        //     },1500)
            
       
         })
@@ -162,9 +162,9 @@ const UserShow = ({d,i}) => {
            
           
     
-            setTimeout(()=>{
-                window.location.reload(false);   
-                },1500)
+            // setTimeout(()=>{
+            //     window.location.reload(false);   
+            //     },1500)
                
           
             })
@@ -219,9 +219,9 @@ const UserShow = ({d,i}) => {
                
               
         
-                setTimeout(()=>{
-                    window.location.reload(false);   
-                    },1500)
+                // setTimeout(()=>{
+                //     window.location.reload(false);   
+                //     },1500)
                    
               
                 })
@@ -274,9 +274,9 @@ const UserShow = ({d,i}) => {
               
               
         
-                setTimeout(()=>{
-                    window.location.reload(false);   
-                    },1500)
+                // setTimeout(()=>{
+                //     window.location.reload(false);   
+                //     },1500)
                    
               
                 })
@@ -329,9 +329,9 @@ const UserShow = ({d,i}) => {
            
               
         
-                setTimeout(()=>{
-                    window.location.reload(false);   
-                    },1500)
+                // setTimeout(()=>{
+                //     window.location.reload(false);   
+                //     },1500)
                    
               
                 })

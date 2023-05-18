@@ -137,7 +137,7 @@ detail.map(d=>  <h1>
     <thead>
       <tr>
         <th>school</th>
-        <th>{d.school}</th>
+        <th>{d.schoolName}</th>
         <th>{p.school}</th>
       </tr>
     </thead>

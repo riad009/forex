@@ -502,12 +502,14 @@ useEffect(()=>{
 
     <select name='category' className="select select-secondary w-full max-w-xs">
   <option disabled selected>Pick city name</option>
-  {categories?.filter(city => city.category).sort((a, b) => a.category.localeCompare(b.category)).map(city => (
-  <option value={city.category}>{city.category}</option>
-))}
-
-
+  {[...new Set(categories?.filter(city => city.category).map(city => city.category))]
+    .sort((a, b) => a.localeCompare(b))
+    .map(city => (
+      <option key={city} value={city}>{city}</option>
+    ))
+  }
 </select>
+
 
     {/*  City  */}
     {/* <input type="text" placeholder="City name" required className="input input-bordered input-info w-full max-w-xs" name='category'/> 

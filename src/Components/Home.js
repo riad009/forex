@@ -225,9 +225,9 @@ Towschoolfeatures.map(sc=>
 <div  className='mobile  right  text-xl '>
 <h1 className=' pc mt-4 text-2xl font-mono  font-bold '>locate the school</h1>
 
-<h1 className='pc mt-3 font-bold text-3xl '>THAT IS MOST SUITABLE FOR YOU</h1>
+<h1 className='pc mt-3 font-bold text-3xl '>Best School in pakistan</h1>
 
-<h1 className=' mt-2 text-2xl'>Finding the right school shouldn’t be hard. From play group to high school. <br /> We make it simple to find and connect with the finest ones for you.</h1>
+<h2 className=' mt-2 text-2xl'>Finding the right school shouldn’t be hard. From play group to high school. <br /> We make it simple to find and connect with the finest ones for you.</h2>
 <div className='justify-center '>
 
 
